@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+*.sqlite
+*.db
+node_modules/
+dist/
+build/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+exports/*
+!exports/.gitkeep
