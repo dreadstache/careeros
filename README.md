@@ -12,3 +12,14 @@ Analytics · Games · Technical Art · Software · GIS · Music · Film · Simul
 ## Stack
 
 FastAPI · SQLite/PostgreSQL-ready · SQLAlchemy · React · TypeScript · D3.js · Jinja2
+
+## Run locally
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+The frontend is deployed to GitHub Pages from `main` by the
+`deploy-pages.yml` workflow.
