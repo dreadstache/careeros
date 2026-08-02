@@ -1,0 +1,10 @@
+{
+  "project_name": "generated",
+  "output_directory": "./frontend/public",
+  "modules": ["base", "resume"],
+  "module_options": {
+    "resume": {
+      "data_file": "./data/career-data.json"
+    }
+  }
+}

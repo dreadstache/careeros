@@ -1,0 +1,152 @@
+{
+  "basics": {
+    "name": "Lucien Marcel Cote",
+    "headline": "Technical Artist, Systems Thinker, and Game Developer",
+    "summary": "Game-development and systems professional with experience spanning AAA character art, real-time simulation, workflow automation, municipal technology, software development, team leadership, and technical mentorship."
+  },
+  "experience": [
+    {
+      "organization": "Street Smarts VR",
+      "position": "3D Generalist III",
+      "start_date": "2023-08",
+      "end_date": "2024-09",
+      "location": "Remote",
+      "summary": "Supported government and military VR training simulations.",
+      "highlights": [
+        "Managed software research and development while maintaining fidelity in virtual training environments.",
+        "Led project planning and stakeholder coordination.",
+        "Implemented art pipelines supporting high frame rates and program fidelity."
+      ]
+    },
+    {
+      "organization": "Independent Contractor",
+      "position": "3D Generalist, Systems Analyst, and Project Manager",
+      "start_date": "2007",
+      "location": "Vancouver, Washington",
+      "summary": "Creates real-time assets, production tools, and technical workflows.",
+      "highlights": [
+        "Developed assets for Unity, Unreal, and custom engines.",
+        "Created MEL and Python automation tools for artist workflows.",
+        "Trained artists in Maya and custom tool usage."
+      ]
+    },
+    {
+      "organization": "SuperGenius Studio",
+      "position": "3D Artist and Team Lead",
+      "start_date": "2022-05",
+      "location": "Portland, Oregon",
+      "summary": "Develops high-fidelity game assets and supports multidisciplinary production.",
+      "highlights": [
+        "Created assets and textures with Maya, ZBrush, and Substance Painter.",
+        "Provided technical feedback and mentorship in character-art production."
+      ]
+    },
+    {
+      "organization": "Netrush",
+      "position": "Software Developer",
+      "start_date": "2017-12",
+      "end_date": "2019-10",
+      "location": "Vancouver, Washington",
+      "summary": "Built internal software supporting Amazon Marketplace analytics.",
+      "highlights": [
+        "Developed dashboards and visual tools with Salesforce, Azure, and React.",
+        "Built internal platforms and workflow tools."
+      ]
+    },
+    {
+      "organization": "City of Casper",
+      "position": "Systems Analyst",
+      "start_date": "2015",
+      "end_date": "2017",
+      "location": "Casper, Wyoming",
+      "summary": "Supported municipal systems and technology modernization.",
+      "highlights": [
+        "Led system upgrades and municipal IT modernization work.",
+        "Implemented GIS-based 3D city modeling.",
+        "Designed web interfaces and dashboards supporting civic communication and transparency."
+      ]
+    },
+    {
+      "organization": "Team Bondi / KMMIE",
+      "position": "Character Artist and Team Lead",
+      "start_date": "2008",
+      "end_date": "2013",
+      "location": "Sydney, Australia",
+      "summary": "Led character-art production for AAA game development.",
+      "highlights": [
+        "Served as principal artist for Cole Phelps and the principal cast of L.A. Noire.",
+        "Coordinated character asset creation, pipeline development, and technical troubleshooting.",
+        "Worked with the depth-analysis team on deformation and shader workflows for Project WOTO."
+      ]
+    },
+    {
+      "organization": "Dr. D Studios",
+      "position": "Character Finaler",
+      "start_date": "2011",
+      "end_date": "2011",
+      "location": "Sydney, Australia",
+      "summary": "Finalized character assets for Happy Feet Two.",
+      "highlights": [
+        "Completed rigging and blend-shape passes for principal and background characters.",
+        "Maintained compatibility with the proprietary animation pipeline."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "The Art Institute of Portland",
+      "credential": "Bachelor of Science",
+      "field": "Game Art and Design",
+      "start_date": "2004",
+      "end_date": "2007"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Game Engines",
+      "keywords": ["Unreal Engine", "Unity", "Custom VR/AR platforms"]
+    },
+    {
+      "name": "3D Production",
+      "keywords": ["Maya", "ZBrush", "Substance Painter", "Blender", "Quixel", "MetaHuman"]
+    },
+    {
+      "name": "Programming and Web",
+      "keywords": ["Python", "MEL", "C#", "HTML", "JavaScript", "React", "Redux", "Azure"]
+    },
+    {
+      "name": "Production Tools",
+      "keywords": ["ShotGrid", "Perforce", "Jira", "Visual Studio", "VS Code"]
+    },
+    {
+      "name": "Pipelines",
+      "keywords": ["Character Development", "Photogrammetry", "PBR Materials", "Game-Ready Asset Preparation"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "L.A. Noire",
+      "summary": "AAA game developed by Team Bondi and published by Rockstar Games.",
+      "highlights": ["Principal artist for lead character Cole Phelps and the principal cast."],
+      "technologies": ["Character Art", "Proprietary Engine"]
+    },
+    {
+      "name": "Happy Feet Two",
+      "summary": "Animated feature produced with Warner Bros.",
+      "highlights": ["Finalized rigging and blend shapes for principal and background characters."],
+      "technologies": ["Character Rigging", "Blend Shapes"]
+    },
+    {
+      "name": "Street Smarts VR Training Simulations",
+      "summary": "Virtual training simulations for government and military clients.",
+      "highlights": ["Supported fidelity, performance, pipelines, and project coordination."],
+      "technologies": ["Unity", "Virtual Reality"]
+    },
+    {
+      "name": "Project WOTO",
+      "summary": "Unreleased Team Bondi project developed with Warner Bros.",
+      "highlights": ["Contributed character deformation and shader pipeline research and development."],
+      "technologies": ["Character Art", "Shaders"]
+    }
+  ]
+}

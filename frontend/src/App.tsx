@@ -1,4 +1,6 @@
 export default function App() {
+  const baseUrl = import.meta.env.BASE_URL;
+
   return (
     <main>
       <section className="hero" aria-labelledby="page-title">
@@ -11,9 +13,17 @@ export default function App() {
           Build focused resumes, portfolio stories, cover letters, and career
           visualizations from a single, durable body of evidence.
         </p>
-        <a className="button" href="https://github.com/dreadstache/careeros">
-          Explore the project
-        </a>
+        <div className="actions">
+          <a className="button" href={`${baseUrl}generated/resume/index.html`}>
+            View generated résumé
+          </a>
+          <a
+            className="button secondary"
+            href="https://github.com/dreadstache/careeros"
+          >
+            Explore the project
+          </a>
+        </div>
       </section>
     </main>
   );
