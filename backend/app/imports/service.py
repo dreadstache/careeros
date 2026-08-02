@@ -22,21 +22,24 @@ def _clean(value: Any) -> Any:
 def _rows_from_xlsx(path: Path) -> dict[str, list[dict[str, Any]]]:
     workbook = load_workbook(path, read_only=True, data_only=True)
     rows: dict[str, list[dict[str, Any]]] = {}
-    for section in SECTIONS:
-        sheet_name = section.title()
-        if sheet_name not in workbook.sheetnames:
-            rows[section] = []
-            continue
-        values = list(workbook[sheet_name].iter_rows(values_only=True))
-        if not values:
-            rows[section] = []
-            continue
-        headers = [str(value or "").strip().lower() for value in values[0]]
-        rows[section] = [
-            {headers[index]: _clean(value) for index, value in enumerate(row) if headers[index]}
-            for row in values[1:]
-            if any(value not in (None, "") for value in row)
-        ]
+    try:
+        for section in SECTIONS:
+            sheet_name = section.title()
+            if sheet_name not in workbook.sheetnames:
+                rows[section] = []
+                continue
+            values = list(workbook[sheet_name].iter_rows(values_only=True))
+            if not values:
+                rows[section] = []
+                continue
+            headers = [str(value or "").strip().lower() for value in values[0]]
+            rows[section] = [
+                {headers[index]: _clean(value) for index, value in enumerate(row) if headers[index]}
+                for row in values[1:]
+                if any(value not in (None, "") for value in row)
+            ]
+    finally:
+        workbook.close()
     return rows
 
 

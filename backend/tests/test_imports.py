@@ -4,6 +4,8 @@ from pathlib import Path
 from openpyxl import Workbook
 
 from app.imports import apply_import, build_review
+from app.main import app
+from fastapi.testclient import TestClient
 
 
 def _canonical(path: Path) -> Path:
@@ -48,3 +50,20 @@ def test_unchanged_row_is_not_reported(tmp_path):
     source.write_text("id,operation,status,organization\nold-role,upsert,active,Old Co\n", encoding="utf-8")
     review = build_review(source, canonical, "experience")
     assert review["summary"] == {"create": 0, "update": 0, "archive": 0, "errors": 0}
+
+
+def test_review_endpoint_accepts_workbook_without_mutating(tmp_path, monkeypatch):
+    canonical = _canonical(tmp_path / "career.json")
+    monkeypatch.setattr("app.main.CANONICAL", canonical)
+    workbook = Workbook()
+    sheet = workbook.active
+    sheet.title = "Experience"
+    sheet.append(["id", "operation", "status", "organization"])
+    sheet.append(["new-role", "upsert", "active", "New Co"])
+    source = tmp_path / "import.xlsx"
+    workbook.save(source)
+    before = canonical.read_text(encoding="utf-8")
+    response = TestClient(app).post("/imports/review", files={"file": ("career.xlsx", source.read_bytes())})
+    assert response.status_code == 200
+    assert response.json()["summary"]["create"] == 1
+    assert canonical.read_text(encoding="utf-8") == before

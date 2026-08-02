@@ -56,3 +56,27 @@ careeros-forge --config forge.resume.json
 
 CSV files are supported one section at a time with `--section experience`,
 `education`, `skills`, or `projects`.
+
+### Local Import Studio
+
+The owner-only workflow is available when CareerOS is running locally. Start
+the API and frontend in separate PowerShell windows:
+
+```powershell
+$env:PYTHONPATH="backend"
+python -m uvicorn app.main:app --reload
+```
+
+```powershell
+cd frontend
+npm run dev
+```
+
+Open `http://localhost:5173`, choose the edited workbook, and select **Review
+changes**. The public GitHub Pages site remains view-only and does not expose
+the Import Studio.
+
+For new work history, add a row to **Experience**, use `upsert`, and create a
+unique lowercase ID such as `experience-company-role`. For skills, add a row to
+**Skills** for each useful category and separate individual keywords with `|`.
+Keep every existing ID unchanged.
