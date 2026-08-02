@@ -132,6 +132,32 @@
         "source": "CareerOS verified career data",
         "source_type": "verified_cv"
       }
+    },
+    {
+      "id": "experience-sweetser",
+      "status": "active",
+      "organization": "Sweetser",
+      "position": "Data Analyst",
+      "start_date": "2025",
+      "end_date": "2026",
+      "location": "Saco, Maine",
+      "summary": "Data Analysis and Reporting for Behavioral Health pipeline.",
+      "highlights": [
+        "SQL",
+        "Crystal Reports",
+        "Reporting",
+        "Dashboards",
+        "Healthcare",
+        "Automation",
+        "SharePoint",
+        "Power Automate"
+      ],
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "spreadsheet",
+        "imported_at": "2026-08-02T21:09:14.532385+00:00",
+        "note": "Added 8/2/26"
+      }
     }
   ],
   "education": [
@@ -229,6 +255,27 @@
       "provenance": {
         "source": "CareerOS verified career data",
         "source_type": "verified_cv"
+      }
+    },
+    {
+      "id": "skills-data-analysis",
+      "status": "active",
+      "name": "Data Analysis and Reporting",
+      "keywords": [
+        "SQL",
+        "Crystal Reports",
+        "Reporting",
+        "Dashboards",
+        "Healthcare",
+        "Automation",
+        "SharePoint",
+        "Power Automate"
+      ],
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "spreadsheet",
+        "imported_at": "2026-08-02T21:08:29.436808+00:00",
+        "note": "Added 8/2/26"
       }
     }
   ],

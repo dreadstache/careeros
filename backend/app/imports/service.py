@@ -11,6 +11,7 @@ from openpyxl import load_workbook
 
 SECTIONS = ("experience", "education", "skills", "projects")
 LIST_FIELDS = {"highlights", "keywords", "technologies"}
+DATE_FIELDS = {"start_date", "end_date"}
 
 
 def _clean(value: Any) -> Any:
@@ -61,6 +62,10 @@ def read_import(path: Path, section: str | None = None) -> dict[str, list[dict[s
 
 def _normalize(row: dict[str, Any]) -> dict[str, Any]:
     normalized = {key: _clean(value) for key, value in row.items()}
+    for field in DATE_FIELDS:
+        if field in normalized and normalized[field] != "":
+            value = normalized[field]
+            normalized[field] = str(int(value)) if isinstance(value, float) and value.is_integer() else str(value)
     for field in LIST_FIELDS:
         if field in normalized and isinstance(normalized[field], str):
             normalized[field] = [part.strip() for part in normalized[field].split("|") if part.strip()]

@@ -67,3 +67,17 @@ def test_review_endpoint_accepts_workbook_without_mutating(tmp_path, monkeypatch
     assert response.status_code == 200
     assert response.json()["summary"]["create"] == 1
     assert canonical.read_text(encoding="utf-8") == before
+
+
+def test_excel_numeric_years_are_normalized_to_strings(tmp_path):
+    canonical = _canonical(tmp_path / "career.json")
+    workbook = Workbook()
+    sheet = workbook.active
+    sheet.title = "Experience"
+    sheet.append(["id", "operation", "status", "organization", "start_date", "end_date"])
+    sheet.append(["new-role", "upsert", "active", "New Co", 2024, 2026])
+    source = tmp_path / "import.xlsx"
+    workbook.save(source)
+    review = build_review(source, canonical)
+    assert review["changes"][0]["after"]["start_date"] == "2024"
+    assert review["changes"][0]["after"]["end_date"] == "2026"
