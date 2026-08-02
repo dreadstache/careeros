@@ -16,3 +16,4 @@ build/
 Thumbs.db
 exports/*
 !exports/.gitkeep
+frontend/public/generated/
