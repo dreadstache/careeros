@@ -111,6 +111,12 @@ h1 {
   gap: 0.8rem;
 }
 
+.track-list { margin-top: 2rem; }
+.track-list p { color: #b8bdca; font-weight: 700; }
+.track-list > div { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.track-list a { padding: 0.55rem 0.8rem; border: 1px solid rgb(255 255 255 / 16%); border-radius: 999px; color: #dce2f3; text-decoration: none; font-size: 0.9rem; }
+.track-list a:hover, .track-list a:focus-visible { border-color: #75e1bd; color: #a1f1d5; }
+
 .button.secondary {
   color: #dce2f3;
   background: rgb(255 255 255 / 8%);
