@@ -16,7 +16,7 @@ export default function App() {
   const [review, setReview] = useState<Review | null>(null);
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
-  const resumeTracks = [["Analytics", "analytics"], ["GIS", "gis"], ["Game Development", "game-development"], ["Technical Art", "technical-art"], ["Software & Systems", "software-systems"]];
+  const resumeTracks = [["Analytics", "analytics"], ["GIS", "gis"], ["Game Development", "game-development"], ["Technical Art", "technical-art"], ["Software & Systems", "software-systems"], ["Music Production", "music-production"]];
 
   function chooseFile(event: ChangeEvent<HTMLInputElement>) {
     setFile(event.target.files?.[0] || null);

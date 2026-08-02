@@ -158,6 +158,30 @@
         "imported_at": "2026-08-02T21:09:14.532385+00:00",
         "note": "Added 8/2/26"
       }
+    },
+    {
+      "id": "experience-music-production",
+      "status": "active",
+      "organization": "Dreadstache Records",
+      "position": "Musician and Producer",
+      "start_date": "2010",
+      "end_date": "2026",
+      "location": "USA, Australia",
+      "summary": "Music production for education and soundtrack scores.",
+      "highlights": [
+        "Novation Groovebox",
+        "Novation Launchpad",
+        "Logic Pro",
+        "Koala",
+        "Output Suite",
+        "TuneCore"
+      ],
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "spreadsheet",
+        "imported_at": "2026-08-02T22:05:05.148033+00:00",
+        "note": "Added 8/2/26"
+      }
     }
   ],
   "education": [
@@ -277,6 +301,25 @@
         "imported_at": "2026-08-02T21:08:29.436808+00:00",
         "note": "Added 8/2/26"
       }
+    },
+    {
+      "id": "skills-data-music",
+      "status": "active",
+      "name": "Music Production, Authorship, and Branding",
+      "keywords": [
+        "Novation Groovebox",
+        "Novation Launchpad",
+        "Logic Pro",
+        "Koala",
+        "Output Suite",
+        "TuneCore"
+      ],
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "spreadsheet",
+        "imported_at": "2026-08-02T22:05:05.148177+00:00",
+        "note": "Added 8/2/26"
+      }
     }
   ],
   "projects": [
@@ -347,6 +390,26 @@
         "source": "CareerOS verified career data",
         "source_type": "verified_cv"
       }
+    },
+    {
+      "id": "projects-dreadstache",
+      "status": "active",
+      "name": "Dreadstache, Dreadstache Records",
+      "summary": "Developed and Branded Dreadstache as a performance role, Dreadstache Records as a label, and use MIDI, synthesizers, grooveboxes, and a lot of software to produce electronic music and scores.",
+      "technologies": [
+        "Music Production",
+        "Branding",
+        "Multiple Software Suites and Tools"
+      ],
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "spreadsheet",
+        "imported_at": "2026-08-02T22:05:59.552794+00:00",
+        "note": "Added 8/2/26"
+      },
+      "highlights": [
+        "Developed the Dreadstache performance identity and Dreadstache Records label and brand."
+      ]
     }
   ],
   "schema_version": "1.0"
