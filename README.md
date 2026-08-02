@@ -16,7 +16,7 @@ FastAPI · SQLite/PostgreSQL-ready · SQLAlchemy · React · TypeScript · D3.js
 ## Run locally
 
 ```powershell
-python -m pip install "careeros-forge @ git+https://github.com/dreadstache/careeros-forge.git@df46b2a997980342147e80104f4cedfc1d143de4"
+python -m pip install "careeros-forge @ git+https://github.com/dreadstache/careeros-forge.git@ca87db2"
 careeros-forge --config forge.resume.json
 cd frontend
 npm install
@@ -29,3 +29,30 @@ validates that source and generates the browser- and print-ready résumé under
 
 The frontend is deployed to GitHub Pages from `main` by the
 `deploy-pages.yml` workflow.
+
+## Career data imports
+
+Download `frontend/public/templates/CareerOS_Import_Template.xlsx`, edit the
+career records, and leave existing IDs unchanged. Every row uses an explicit
+operation:
+
+- `upsert` creates or updates a record.
+- `archive` hides a record from generated outputs while preserving its history.
+- Missing rows make no changes.
+
+Always review an import before applying it:
+
+```powershell
+python scripts/import_career_data.py review path\to\CareerOS_Import_Template.xlsx
+```
+
+The command writes `exports/import-review.json` with every proposed create,
+update, and archive. Once the report looks right, apply the same file:
+
+```powershell
+python scripts/import_career_data.py apply path\to\CareerOS_Import_Template.xlsx
+careeros-forge --config forge.resume.json
+```
+
+CSV files are supported one section at a time with `--section experience`,
+`education`, `skills`, or `projects`.

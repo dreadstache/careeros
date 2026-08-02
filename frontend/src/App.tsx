@@ -19,9 +19,12 @@ export default function App() {
           </a>
           <a
             className="button secondary"
-            href="https://github.com/dreadstache/careeros"
+            href={`${baseUrl}templates/CareerOS_Import_Template.xlsx`}
           >
-            Explore the project
+            Download career workbook
+          </a>
+          <a className="button secondary" href="https://github.com/dreadstache/careeros#career-data-imports">
+            Import instructions
           </a>
         </div>
       </section>

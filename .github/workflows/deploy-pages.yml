@@ -28,7 +28,7 @@ jobs:
       - name: Install CareerOS Forge
         run: >-
           python -m pip install
-          "careeros-forge @ git+https://github.com/dreadstache/careeros-forge.git@df46b2a997980342147e80104f4cedfc1d143de4"
+          "careeros-forge @ git+https://github.com/dreadstache/careeros-forge.git@ca87db2"
       - name: Generate validated résumé
         run: careeros-forge --config forge.resume.json
       - name: Set up Node

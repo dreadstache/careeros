@@ -16,7 +16,13 @@
         "Managed software research and development while maintaining fidelity in virtual training environments.",
         "Led project planning and stakeholder coordination.",
         "Implemented art pipelines supporting high frame rates and program fidelity."
-      ]
+      ],
+      "id": "experience-street-smarts-vr",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     },
     {
       "organization": "Independent Contractor",
@@ -28,7 +34,13 @@
         "Developed assets for Unity, Unreal, and custom engines.",
         "Created MEL and Python automation tools for artist workflows.",
         "Trained artists in Maya and custom tool usage."
-      ]
+      ],
+      "id": "experience-independent-contractor",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     },
     {
       "organization": "SuperGenius Studio",
@@ -39,7 +51,13 @@
       "highlights": [
         "Created assets and textures with Maya, ZBrush, and Substance Painter.",
         "Provided technical feedback and mentorship in character-art production."
-      ]
+      ],
+      "id": "experience-supergenius-studio",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     },
     {
       "organization": "Netrush",
@@ -51,7 +69,13 @@
       "highlights": [
         "Developed dashboards and visual tools with Salesforce, Azure, and React.",
         "Built internal platforms and workflow tools."
-      ]
+      ],
+      "id": "experience-netrush",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     },
     {
       "organization": "City of Casper",
@@ -64,7 +88,13 @@
         "Led system upgrades and municipal IT modernization work.",
         "Implemented GIS-based 3D city modeling.",
         "Designed web interfaces and dashboards supporting civic communication and transparency."
-      ]
+      ],
+      "id": "experience-city-of-casper",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     },
     {
       "organization": "Team Bondi / KMMIE",
@@ -77,7 +107,13 @@
         "Served as principal artist for Cole Phelps and the principal cast of L.A. Noire.",
         "Coordinated character asset creation, pipeline development, and technical troubleshooting.",
         "Worked with the depth-analysis team on deformation and shader workflows for Project WOTO."
-      ]
+      ],
+      "id": "experience-team-bondi-kmmie",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     },
     {
       "organization": "Dr. D Studios",
@@ -89,7 +125,13 @@
       "highlights": [
         "Completed rigging and blend-shape passes for principal and background characters.",
         "Maintained compatibility with the proprietary animation pipeline."
-      ]
+      ],
+      "id": "experience-dr-d-studios",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     }
   ],
   "education": [
@@ -98,55 +140,167 @@
       "credential": "Bachelor of Science",
       "field": "Game Art and Design",
       "start_date": "2004",
-      "end_date": "2007"
+      "end_date": "2007",
+      "id": "education-the-art-institute-of-portland",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     }
   ],
   "skills": [
     {
       "name": "Game Engines",
-      "keywords": ["Unreal Engine", "Unity", "Custom VR/AR platforms"]
+      "keywords": [
+        "Unreal Engine",
+        "Unity",
+        "Custom VR/AR platforms"
+      ],
+      "id": "skills-game-engines",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     },
     {
       "name": "3D Production",
-      "keywords": ["Maya", "ZBrush", "Substance Painter", "Blender", "Quixel", "MetaHuman"]
+      "keywords": [
+        "Maya",
+        "ZBrush",
+        "Substance Painter",
+        "Blender",
+        "Quixel",
+        "MetaHuman"
+      ],
+      "id": "skills-3d-production",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     },
     {
       "name": "Programming and Web",
-      "keywords": ["Python", "MEL", "C#", "HTML", "JavaScript", "React", "Redux", "Azure"]
+      "keywords": [
+        "Python",
+        "MEL",
+        "C#",
+        "HTML",
+        "JavaScript",
+        "React",
+        "Redux",
+        "Azure"
+      ],
+      "id": "skills-programming-and-web",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     },
     {
       "name": "Production Tools",
-      "keywords": ["ShotGrid", "Perforce", "Jira", "Visual Studio", "VS Code"]
+      "keywords": [
+        "ShotGrid",
+        "Perforce",
+        "Jira",
+        "Visual Studio",
+        "VS Code"
+      ],
+      "id": "skills-production-tools",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     },
     {
       "name": "Pipelines",
-      "keywords": ["Character Development", "Photogrammetry", "PBR Materials", "Game-Ready Asset Preparation"]
+      "keywords": [
+        "Character Development",
+        "Photogrammetry",
+        "PBR Materials",
+        "Game-Ready Asset Preparation"
+      ],
+      "id": "skills-pipelines",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     }
   ],
   "projects": [
     {
       "name": "L.A. Noire",
       "summary": "AAA game developed by Team Bondi and published by Rockstar Games.",
-      "highlights": ["Principal artist for lead character Cole Phelps and the principal cast."],
-      "technologies": ["Character Art", "Proprietary Engine"]
+      "highlights": [
+        "Principal artist for lead character Cole Phelps and the principal cast."
+      ],
+      "technologies": [
+        "Character Art",
+        "Proprietary Engine"
+      ],
+      "id": "projects-l-a-noire",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     },
     {
       "name": "Happy Feet Two",
       "summary": "Animated feature produced with Warner Bros.",
-      "highlights": ["Finalized rigging and blend shapes for principal and background characters."],
-      "technologies": ["Character Rigging", "Blend Shapes"]
+      "highlights": [
+        "Finalized rigging and blend shapes for principal and background characters."
+      ],
+      "technologies": [
+        "Character Rigging",
+        "Blend Shapes"
+      ],
+      "id": "projects-happy-feet-two",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     },
     {
       "name": "Street Smarts VR Training Simulations",
       "summary": "Virtual training simulations for government and military clients.",
-      "highlights": ["Supported fidelity, performance, pipelines, and project coordination."],
-      "technologies": ["Unity", "Virtual Reality"]
+      "highlights": [
+        "Supported fidelity, performance, pipelines, and project coordination."
+      ],
+      "technologies": [
+        "Unity",
+        "Virtual Reality"
+      ],
+      "id": "projects-street-smarts-vr-training-simulations",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     },
     {
       "name": "Project WOTO",
       "summary": "Unreleased Team Bondi project developed with Warner Bros.",
-      "highlights": ["Contributed character deformation and shader pipeline research and development."],
-      "technologies": ["Character Art", "Shaders"]
+      "highlights": [
+        "Contributed character deformation and shader pipeline research and development."
+      ],
+      "technologies": [
+        "Character Art",
+        "Shaders"
+      ],
+      "id": "projects-project-woto",
+      "status": "active",
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "verified_cv"
+      }
     }
-  ]
+  ],
+  "schema_version": "1.0"
 }
