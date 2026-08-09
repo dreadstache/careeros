@@ -10,6 +10,7 @@ type Review = {
 };
 type Track = {
   slug: string;
+  original_slug: string | null;
   title: string;
   headline?: string;
   summary?: string;
@@ -17,6 +18,7 @@ type Track = {
   skill_ids: string[];
   project_ids: string[];
 };
+type PublicTrack = Pick<Track, "slug" | "title" | "headline" | "summary">;
 type CatalogItem = { id: string; label: string };
 type TrackStudio = {
   tracks: Track[];
@@ -31,14 +33,14 @@ type PublishStatus = {
 type SelectionField = "experience_ids" | "skill_ids" | "project_ids";
 
 const apiUrl = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
-const resumeTracks = [
-  ["Analytics", "analytics"],
-  ["GIS", "gis"],
-  ["Game Development", "game-development"],
-  ["Technical Art", "technical-art"],
-  ["Software & Systems", "software-systems"],
-  ["Music Production", "music-production"],
-  ["Web Development", "web-development"],
+const fallbackTracks: PublicTrack[] = [
+  { title: "Analytics", slug: "analytics" },
+  { title: "GIS", slug: "gis" },
+  { title: "Game Development", slug: "game-development" },
+  { title: "Technical Art", slug: "technical-art" },
+  { title: "Software & Systems", slug: "software-systems" },
+  { title: "Music Production", slug: "music-production" },
+  { title: "Web Development", slug: "web-development" },
 ];
 
 export default function App() {
@@ -50,7 +52,17 @@ export default function App() {
   const [busy, setBusy] = useState(false);
   const [ownerToken, setOwnerToken] = useState("");
   const [trackStudio, setTrackStudio] = useState<TrackStudio | null>(null);
+  const [publicTracks, setPublicTracks] = useState<PublicTrack[]>(fallbackTracks);
+  const [removedTracks, setRemovedTracks] = useState<Track[]>([]);
+  const [confirmRemovals, setConfirmRemovals] = useState(false);
   const [publishStatus, setPublishStatus] = useState<PublishStatus | null>(null);
+
+  useEffect(() => {
+    fetch(`${baseUrl}generated/resume/tracks.json`, { cache: "no-store" })
+      .then(response => response.ok ? response.json() : Promise.reject())
+      .then(payload => Array.isArray(payload.tracks) && setPublicTracks(payload.tracks))
+      .catch(() => undefined);
+  }, [baseUrl]);
 
   useEffect(() => {
     if (!isLocal) return;
@@ -135,20 +147,80 @@ export default function App() {
     });
   }
 
+  function updateTrack(trackIndex: number, field: "slug" | "title" | "headline" | "summary", value: string) {
+    setTrackStudio(current => current && ({
+      ...current,
+      tracks: current.tracks.map((track, index) => index === trackIndex ? { ...track, [field]: value } : track),
+    }));
+  }
+
+  function addTrack() {
+    setTrackStudio(current => {
+      if (!current) return current;
+      let sequence = current.tracks.length + 1;
+      let slug = `new-resume-track-${sequence}`;
+      while (current.tracks.some(track => track.slug === slug)) {
+        slug = `new-resume-track-${++sequence}`;
+      }
+      return {
+        ...current,
+        tracks: [...current.tracks, {
+          slug,
+          original_slug: null,
+          title: "New Résumé Track",
+          headline: "",
+          summary: "",
+          experience_ids: [],
+          skill_ids: [],
+          project_ids: [],
+        }],
+      };
+    });
+  }
+
+  function moveTrack(trackIndex: number, direction: -1 | 1) {
+    setTrackStudio(current => {
+      if (!current) return current;
+      const destination = trackIndex + direction;
+      if (destination < 0 || destination >= current.tracks.length) return current;
+      const tracks = [...current.tracks];
+      [tracks[trackIndex], tracks[destination]] = [tracks[destination], tracks[trackIndex]];
+      return { ...current, tracks };
+    });
+  }
+
+  function removeTrack(trackIndex: number) {
+    if (!trackStudio || trackStudio.tracks.length === 1) return;
+    const track = trackStudio.tracks[trackIndex];
+    if (track.original_slug) setRemovedTracks(removed => [...removed, track]);
+    setConfirmRemovals(false);
+    setTrackStudio({ ...trackStudio, tracks: trackStudio.tracks.filter((_, index) => index !== trackIndex) });
+  }
+
+  function restoreTrack(track: Track) {
+    setTrackStudio(current => current && ({ ...current, tracks: [...current.tracks, track] }));
+    setRemovedTracks(current => current.filter(item => item.original_slug !== track.original_slug));
+    setConfirmRemovals(false);
+  }
+
   async function saveTracks() {
     if (!trackStudio) return;
     setBusy(true);
     try {
-      const tracks = trackStudio.tracks.map(({ slug, experience_ids, skill_ids, project_ids }) => ({
-        slug, experience_ids, skill_ids, project_ids,
-      }));
       const response = await fetch(`${apiUrl}/studio/tracks`, {
         method: "PUT",
         headers: ownerHeaders(true),
-        body: JSON.stringify({ tracks }),
+        body: JSON.stringify({
+          tracks: trackStudio.tracks,
+          removed_slugs: removedTracks.map(track => track.original_slug).filter(Boolean),
+          confirm_removals: confirmRemovals,
+        }),
       });
       const payload = await responsePayload(response);
       setTrackStudio(payload);
+      setPublicTracks(payload.tracks);
+      setRemovedTracks([]);
+      setConfirmRemovals(false);
       setMessage(`Résumé tracks saved and regenerated. Backup: ${payload.backup}`);
       await refreshPublishStatus();
     } catch (error) {
@@ -206,7 +278,7 @@ export default function App() {
         </div>
         <div className="track-list" aria-label="Role-specific resumes">
           <p>Choose a focused résumé</p>
-          <div>{resumeTracks.map(([label, slug]) => <a key={slug} href={`${baseUrl}generated/resume/${slug}/index.html`}>{label}</a>)}</div>
+          <div>{publicTracks.map(track => <a key={track.slug} href={`${baseUrl}generated/resume/${track.slug}/index.html`}>{track.title.replace(/\s+R[eé]sum[eé]$/i, "")}</a>)}</div>
         </div>
       </section>
 
@@ -243,16 +315,35 @@ export default function App() {
         </div>
 
         <div className="studio-step">
-          <div className="step-heading"><span>2</span><div><h3>Choose résumé evidence</h3><p>Each track stays focused. Check only the experience, skills, and projects that belong.</p></div></div>
+          <div className="step-heading"><span>2</span><div><h3>Build résumé tracks</h3><p>Add, rename, reorder, and focus each résumé on the evidence that belongs.</p></div></div>
           {trackStudio && <div className="track-editor">
-            {trackStudio.tracks.map((track, trackIndex) => <details className="track-card" key={track.slug}>
+            {trackStudio.tracks.map((track, trackIndex) => <details className="track-card" key={track.original_slug || track.slug}>
               <summary><strong>{track.title}</strong><span>{track.experience_ids.length} roles · {track.skill_ids.length} skill groups · {track.project_ids.length} projects</span></summary>
+              <div className="track-controls">
+                <button className="mini-button" disabled={trackIndex === 0} onClick={() => moveTrack(trackIndex, -1)}>Move up</button>
+                <button className="mini-button" disabled={trackIndex === trackStudio.tracks.length - 1} onClick={() => moveTrack(trackIndex, 1)}>Move down</button>
+                <button className="mini-button danger" disabled={trackStudio.tracks.length === 1} onClick={() => removeTrack(trackIndex)}>Remove</button>
+              </div>
+              <div className="track-fields">
+                <label><span>URL slug</span><input value={track.slug} onChange={event => updateTrack(trackIndex, "slug", event.target.value)} pattern="[a-z0-9]+(?:-[a-z0-9]+)*" /></label>
+                <label><span>Title</span><input value={track.title} onChange={event => updateTrack(trackIndex, "title", event.target.value)} /></label>
+                <label className="wide"><span>Headline</span><input value={track.headline || ""} onChange={event => updateTrack(trackIndex, "headline", event.target.value)} /></label>
+                <label className="wide"><span>Summary</span><textarea rows={3} value={track.summary || ""} onChange={event => updateTrack(trackIndex, "summary", event.target.value)} /></label>
+              </div>
               {(["experience", "skills", "projects"] as const).map(section => {
                 const field: SelectionField = section === "experience" ? "experience_ids" : section === "skills" ? "skill_ids" : "project_ids";
                 return <fieldset key={section}><legend>{section}</legend><div className="check-grid">{trackStudio.catalog[section].map(item => <label key={item.id}><input type="checkbox" checked={track[field].includes(item.id)} onChange={() => toggleTrackRecord(trackIndex, field, item.id)} /><span>{item.label}</span></label>)}</div></fieldset>;
               })}
             </details>)}
-            <button className="button" disabled={!ownerToken || busy} onClick={saveTracks}>Save tracks & regenerate</button>
+            {removedTracks.length > 0 && <div className="removal-panel">
+              <strong>Tracks queued for removal</strong>
+              {removedTracks.map(track => <div key={track.original_slug}><span>{track.title}</span><button className="mini-button" onClick={() => restoreTrack(track)}>Restore</button></div>)}
+              <label><input type="checkbox" checked={confirmRemovals} onChange={event => setConfirmRemovals(event.target.checked)} /> I understand their generated pages will be removed.</label>
+            </div>}
+            <div className="track-actions">
+              <button className="button secondary" onClick={addTrack}>Add résumé track</button>
+              <button className="button" disabled={!ownerToken || busy || (removedTracks.length > 0 && !confirmRemovals)} onClick={saveTracks}>Save tracks & regenerate</button>
+            </div>
           </div>}
         </div>
 

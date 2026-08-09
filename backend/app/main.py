@@ -14,13 +14,14 @@ from app.studio import (
     publish,
     publishing_status,
     register_review,
-    save_track_selections,
+    save_tracks,
 )
 
 app = FastAPI(title="CareerOS API", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origin_regex=r"http://(localhost|127\.0\.0\.1):\d+",
     allow_methods=["GET", "POST", "PUT"],
     allow_headers=["*"],
 )
@@ -31,6 +32,10 @@ CANONICAL = ROOT / "data" / "career-data.json"
 
 class TrackSelection(BaseModel):
     slug: str
+    original_slug: str | None = None
+    title: str
+    headline: str
+    summary: str
     experience_ids: list[str] = Field(default_factory=list)
     skill_ids: list[str] = Field(default_factory=list)
     project_ids: list[str] = Field(default_factory=list)
@@ -38,6 +43,8 @@ class TrackSelection(BaseModel):
 
 class TrackSelectionRequest(BaseModel):
     tracks: list[TrackSelection]
+    removed_slugs: list[str] = Field(default_factory=list)
+    confirm_removals: bool = False
 
 
 def require_owner(
@@ -90,7 +97,12 @@ def get_track_studio():
 @app.put("/studio/tracks", dependencies=[Depends(require_owner)])
 def update_track_studio(request: TrackSelectionRequest):
     try:
-        return save_track_selections(ROOT, [track.model_dump() for track in request.tracks])
+        return save_tracks(
+            ROOT,
+            [track.model_dump() for track in request.tracks],
+            request.removed_slugs,
+            request.confirm_removals,
+        )
     except ValueError as error:
         raise HTTPException(status_code=400, detail=str(error)) from error
     except RuntimeError as error:

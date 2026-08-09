@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -18,6 +19,7 @@ from app.imports import apply_import, build_review
 
 MAX_WORKBOOK_BYTES = 10 * 1024 * 1024
 PUBLISHABLE_PATHS = {"data/career-data.json", "forge.resume.json"}
+TRACK_SLUG_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 
 @dataclass
@@ -86,6 +88,27 @@ def run_generation(root: Path) -> str:
     return result.stdout.rstrip()
 
 
+def export_track_manifest(root: Path) -> Path:
+    config = json.loads((root / "forge.resume.json").read_text(encoding="utf-8"))
+    profiles = config.get("module_options", {}).get("resume", {}).get("profiles", [])
+    manifest = {
+        "schema_version": "1.0",
+        "tracks": [
+            {
+                "slug": profile["slug"],
+                "title": profile["title"],
+                "headline": profile.get("headline", ""),
+                "summary": profile.get("summary", ""),
+            }
+            for profile in profiles
+        ],
+    }
+    destination = root / "frontend" / "public" / "generated" / "resume" / "tracks.json"
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return destination
+
+
 def _with_generated_backup(root: Path, operation):
     generated = root / "frontend" / "public" / "generated"
     with TemporaryDirectory(prefix="careeros-generated-") as temporary_directory:
@@ -121,6 +144,7 @@ def apply_review(review_id: str, root: Path) -> dict[str, Any]:
         try:
             apply_import(pending.review, canonical)
             generation = run_generation(root)
+            export_track_manifest(root)
         except Exception:
             canonical.write_bytes(original)
             raise
@@ -154,7 +178,7 @@ def load_track_studio(root: Path) -> dict[str, Any]:
     data = json.loads((root / "data" / "career-data.json").read_text(encoding="utf-8"))
     profiles = config.get("module_options", {}).get("resume", {}).get("profiles", [])
     return {
-        "tracks": profiles,
+        "tracks": [{**profile, "original_slug": profile["slug"]} for profile in profiles],
         "catalog": {
             "experience": _active_catalog(data, "experience"),
             "skills": _active_catalog(data, "skills"),
@@ -163,14 +187,41 @@ def load_track_studio(root: Path) -> dict[str, Any]:
     }
 
 
-def save_track_selections(root: Path, selections: list[dict[str, Any]]) -> dict[str, Any]:
+def save_tracks(
+    root: Path,
+    tracks: list[dict[str, Any]],
+    removed_slugs: list[str],
+    confirm_removals: bool,
+) -> dict[str, Any]:
     config_path = root / "forge.resume.json"
     config = json.loads(config_path.read_text(encoding="utf-8"))
     profiles = config.get("module_options", {}).get("resume", {}).get("profiles", [])
-    by_slug = {profile["slug"]: profile for profile in profiles}
-    incoming = {selection["slug"]: selection for selection in selections}
-    if set(incoming) != set(by_slug):
-        raise ValueError("Track selection must include every existing résumé track exactly once")
+    existing_slugs = {profile["slug"] for profile in profiles}
+    if not tracks:
+        raise ValueError("CareerOS must contain at least one résumé track")
+
+    new_slugs: set[str] = set()
+    original_slugs: set[str] = set()
+    for track in tracks:
+        slug = str(track.get("slug", "")).strip()
+        original_slug = track.get("original_slug")
+        if not TRACK_SLUG_PATTERN.fullmatch(slug):
+            raise ValueError(f"Invalid track slug: {slug or '(empty)'}")
+        if slug in new_slugs:
+            raise ValueError(f"Duplicate track slug: {slug}")
+        new_slugs.add(slug)
+        if original_slug:
+            if original_slug not in existing_slugs:
+                raise ValueError(f"Unknown original track slug: {original_slug}")
+            if original_slug in original_slugs:
+                raise ValueError(f"Original track appears more than once: {original_slug}")
+            original_slugs.add(original_slug)
+
+    missing = existing_slugs - original_slugs
+    if set(removed_slugs) != missing:
+        raise ValueError("Removed track list does not match the tracks omitted from this save")
+    if missing and not confirm_removals:
+        raise ValueError("Confirm track removal before saving")
 
     data = json.loads((root / "data" / "career-data.json").read_text(encoding="utf-8"))
     valid_ids = {
@@ -178,18 +229,27 @@ def save_track_selections(root: Path, selections: list[dict[str, Any]]) -> dict[
         "skill_ids": {item["id"] for item in data.get("skills", []) if item.get("id") and item.get("status", "active") == "active"},
         "project_ids": {item["id"] for item in data.get("projects", []) if item.get("id") and item.get("status", "active") == "active"},
     }
-    updated = deepcopy(config)
-    updated_profiles = updated["module_options"]["resume"]["profiles"]
-    for profile in updated_profiles:
-        selection = incoming[profile["slug"]]
+    updated_profiles = []
+    for track in tracks:
+        slug = track["slug"].strip()
+        title = str(track.get("title", "")).strip()
+        headline = str(track.get("headline", "")).strip()
+        summary = str(track.get("summary", "")).strip()
+        if not title or not headline or not summary:
+            raise ValueError(f"{slug} requires a title, headline, and summary")
+        profile = {"slug": slug, "title": title, "headline": headline, "summary": summary}
         for field, allowed in valid_ids.items():
-            values = list(dict.fromkeys(selection.get(field, [])))
+            values = list(dict.fromkeys(track.get(field, [])))
             unknown = sorted(set(values) - allowed)
             if unknown:
-                raise ValueError(f"{profile['slug']} contains unknown {field}: {', '.join(unknown)}")
+                raise ValueError(f"{slug} contains unknown {field}: {', '.join(unknown)}")
             profile[field] = values
         if not any(profile[field] for field in valid_ids):
-            raise ValueError(f"{profile['slug']} must include at least one career record")
+            raise ValueError(f"{slug} must include at least one career record")
+        updated_profiles.append(profile)
+
+    updated = deepcopy(config)
+    updated["module_options"]["resume"]["profiles"] = updated_profiles
 
     backup = _backup_file(config_path, root / "backups", "forge-resume")
     original = config_path.read_bytes()
@@ -198,6 +258,12 @@ def save_track_selections(root: Path, selections: list[dict[str, Any]]) -> dict[
         try:
             config_path.write_text(json.dumps(updated, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
             generation = run_generation(root)
+            resume_root = root / "frontend" / "public" / "generated" / "resume"
+            for stale_slug in existing_slugs - new_slugs:
+                stale_directory = resume_root / stale_slug
+                if stale_directory.is_dir():
+                    shutil.rmtree(stale_directory)
+            export_track_manifest(root)
         except Exception:
             config_path.write_bytes(original)
             raise
@@ -253,6 +319,7 @@ def publish(root: Path) -> dict[str, Any]:
         raise RuntimeError("Local main is not synchronized with origin/main")
     _run_git(root, "diff", "--check")
     run_generation(root)
+    export_track_manifest(root)
     _run_git(root, "add", "--", *status["publishable_changes"])
     _run_git(root, "commit", "-m", "Publish reviewed CareerOS Studio changes")
     commit = _run_git(root, "rev-parse", "HEAD")

@@ -18,6 +18,7 @@ FastAPI · SQLite/PostgreSQL-ready · SQLAlchemy · React · TypeScript · D3.js
 ```powershell
 python -m pip install "careeros-forge @ git+https://github.com/dreadstache/careeros-forge.git@f0467676b0d74d7cabcbaad2700fc27e2af8c867"
 careeros-forge --config forge.resume.json
+python scripts/export_resume_tracks.py
 cd frontend
 npm install
 npm run dev
@@ -81,8 +82,9 @@ Studio. The guarded workflow is:
 1. Choose the edited workbook and review every proposed change.
 2. Apply that exact review. CareerOS creates a local backup and regenerates all
    résumés; stale reviews and generation failures are rejected or rolled back.
-3. Expand each résumé track and select only the experience, skills, and projects
-   that belong in that track, then save and regenerate.
+3. Add, rename, reorder, or remove résumé tracks; then choose the experience,
+   skills, and projects that belong in each track and save. Removed tracks need
+   an explicit confirmation before CareerOS deletes their generated folders.
 4. Check publish status, then commit and publish. Publishing is allowed only
    from synchronized `main`, permits only `data/career-data.json` and
    `forge.resume.json`, and stops when unrelated changes are present.
