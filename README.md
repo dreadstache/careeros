@@ -59,10 +59,13 @@ CSV files are supported one section at a time with `--section experience`,
 
 ### Local Import Studio
 
-The owner-only workflow is available when CareerOS is running locally. Start
-the API and frontend in separate PowerShell windows:
+The owner-only workflow is available only when CareerOS is running locally.
+Create a local token, point the API at Forge when using a source checkout, and
+start the API and frontend in separate PowerShell windows:
 
 ```powershell
+$env:CAREEROS_OWNER_TOKEN=[Convert]::ToHexString([Security.Cryptography.RandomNumberGenerator]::GetBytes(32))
+$env:CAREEROS_FORGE_SOURCE="D:\GITHUB\careeros-forge\src"
 $env:PYTHONPATH="backend"
 python -m uvicorn app.main:app --reload
 ```
@@ -72,9 +75,21 @@ cd frontend
 npm run dev
 ```
 
-Open `http://localhost:5173`, choose the edited workbook, and select **Review
-changes**. The public GitHub Pages site remains view-only and does not expose
-the Import Studio.
+Open `http://localhost:5173` and paste the same owner token into Career Data
+Studio. The guarded workflow is:
+
+1. Choose the edited workbook and review every proposed change.
+2. Apply that exact review. CareerOS creates a local backup and regenerates all
+   résumés; stale reviews and generation failures are rejected or rolled back.
+3. Expand each résumé track and select only the experience, skills, and projects
+   that belong in that track, then save and regenerate.
+4. Check publish status, then commit and publish. Publishing is allowed only
+   from synchronized `main`, permits only `data/career-data.json` and
+   `forge.resume.json`, and stops when unrelated changes are present.
+
+The public GitHub Pages site remains view-only and does not contain Studio
+controls. The owner token is kept in browser memory only and is required by
+every API endpoint that changes data, track configuration, or Git state.
 
 For new work history, add a row to **Experience**, use `upsert`, and create a
 unique lowercase ID such as `experience-company-role`. For skills, add a row to

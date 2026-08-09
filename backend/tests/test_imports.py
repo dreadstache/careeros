@@ -1,10 +1,15 @@
 import json
+import subprocess
 from pathlib import Path
 
+import pytest
 from openpyxl import Workbook
 
+import app.main as main_module
+import app.studio as studio_module
 from app.imports import apply_import, build_review
 from app.main import app
+from app.studio import publishing_status, save_track_selections
 from fastapi.testclient import TestClient
 
 
@@ -81,3 +86,127 @@ def test_excel_numeric_years_are_normalized_to_strings(tmp_path):
     review = build_review(source, canonical)
     assert review["changes"][0]["after"]["start_date"] == "2024"
     assert review["changes"][0]["after"]["end_date"] == "2026"
+
+
+def _studio_root(tmp_path: Path) -> Path:
+    (tmp_path / "data").mkdir()
+    (tmp_path / "frontend" / "public" / "generated").mkdir(parents=True)
+    (tmp_path / "data" / "career-data.json").write_text(
+        json.dumps({"experience": [{"id": "old-role", "status": "active", "organization": "Old Co"}]}),
+        encoding="utf-8",
+    )
+    (tmp_path / "forge.resume.json").write_text(
+        json.dumps({
+            "project_name": "generated",
+            "module_options": {"resume": {"profiles": [{
+                "slug": "example",
+                "title": "Example",
+                "experience_ids": ["old-role"],
+                "skill_ids": [],
+                "project_ids": [],
+            }]}},
+        }),
+        encoding="utf-8",
+    )
+    return tmp_path
+
+
+def _review_workbook() -> bytes:
+    workbook = Workbook()
+    sheet = workbook.active
+    sheet.title = "Experience"
+    sheet.append(["id", "operation", "status", "organization", "position"])
+    sheet.append(["new-role", "upsert", "active", "New Co", "Developer"])
+    from io import BytesIO
+    output = BytesIO()
+    workbook.save(output)
+    return output.getvalue()
+
+
+def test_studio_apply_requires_owner_token_and_regenerates(tmp_path, monkeypatch):
+    root = _studio_root(tmp_path)
+    monkeypatch.setattr(main_module, "ROOT", root)
+    monkeypatch.setattr(main_module, "CANONICAL", root / "data" / "career-data.json")
+    monkeypatch.setattr(studio_module, "run_generation", lambda _root: "Generated modules: base, resume")
+    monkeypatch.setenv("CAREEROS_OWNER_TOKEN", "test-owner-token")
+    studio_module.PENDING_REVIEWS.clear()
+    client = TestClient(app)
+
+    review = client.post("/imports/review", files={"file": ("career.xlsx", _review_workbook())})
+    assert review.status_code == 200
+    review_id = review.json()["review_id"]
+    assert client.post(f"/imports/{review_id}/apply").status_code == 401
+
+    applied = client.post(
+        f"/imports/{review_id}/apply",
+        headers={"X-CareerOS-Owner-Token": "test-owner-token"},
+    )
+    assert applied.status_code == 200
+    assert applied.json()["status"] == "applied"
+    canonical = json.loads((root / "data" / "career-data.json").read_text(encoding="utf-8"))
+    assert {item["id"] for item in canonical["experience"]} == {"old-role", "new-role"}
+    assert list((root / "backups").glob("career-data-*.json"))
+
+
+def test_studio_rejects_review_when_canonical_changed(tmp_path, monkeypatch):
+    root = _studio_root(tmp_path)
+    monkeypatch.setattr(main_module, "ROOT", root)
+    monkeypatch.setattr(main_module, "CANONICAL", root / "data" / "career-data.json")
+    monkeypatch.setenv("CAREEROS_OWNER_TOKEN", "test-owner-token")
+    studio_module.PENDING_REVIEWS.clear()
+    client = TestClient(app)
+    review = client.post("/imports/review", files={"file": ("career.xlsx", _review_workbook())}).json()
+    (root / "data" / "career-data.json").write_text(json.dumps({"experience": []}), encoding="utf-8")
+
+    response = client.post(
+        f"/imports/{review['review_id']}/apply",
+        headers={"X-CareerOS-Owner-Token": "test-owner-token"},
+    )
+    assert response.status_code == 409
+    assert "Review the workbook again" in response.json()["detail"]
+
+
+def test_track_selections_validate_ids_and_regenerate(tmp_path, monkeypatch):
+    root = _studio_root(tmp_path)
+    monkeypatch.setattr(studio_module, "run_generation", lambda _root: "generated")
+    result = save_track_selections(root, [{
+        "slug": "example",
+        "experience_ids": ["old-role"],
+        "skill_ids": [],
+        "project_ids": [],
+    }])
+    assert result["status"] == "saved"
+    assert result["tracks"][0]["experience_ids"] == ["old-role"]
+    with pytest.raises(ValueError, match="must include at least one"):
+        save_track_selections(root, [{
+            "slug": "example",
+            "experience_ids": [],
+            "skill_ids": [],
+            "project_ids": [],
+        }])
+    with pytest.raises(ValueError, match="unknown experience_ids"):
+        save_track_selections(root, [{
+            "slug": "example",
+            "experience_ids": ["invented-role"],
+            "skill_ids": [],
+            "project_ids": [],
+        }])
+
+
+def test_publishing_status_allows_only_career_data_and_config(tmp_path):
+    root = _studio_root(tmp_path)
+    subprocess.run(["git", "init", "-b", "main"], cwd=root, check=True, capture_output=True)
+    subprocess.run(["git", "config", "user.email", "studio@example.com"], cwd=root, check=True)
+    subprocess.run(["git", "config", "user.name", "CareerOS Studio"], cwd=root, check=True)
+    subprocess.run(["git", "add", "."], cwd=root, check=True)
+    subprocess.run(["git", "commit", "-m", "fixture"], cwd=root, check=True, capture_output=True)
+    canonical = root / "data" / "career-data.json"
+    canonical.write_text(canonical.read_text(encoding="utf-8") + "\n", encoding="utf-8")
+    status = publishing_status(root)
+    assert status["ready"] is True
+    assert status["publishable_changes"] == ["data/career-data.json"]
+
+    (root / "README.md").write_text("unrelated", encoding="utf-8")
+    status = publishing_status(root)
+    assert status["ready"] is False
+    assert status["unrelated_changes"] == ["README.md"]
