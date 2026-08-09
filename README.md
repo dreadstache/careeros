@@ -16,7 +16,7 @@ FastAPI · SQLite/PostgreSQL-ready · SQLAlchemy · React · TypeScript · D3.js
 ## Run locally
 
 ```powershell
-python -m pip install "careeros-forge @ git+https://github.com/dreadstache/careeros-forge.git@eff4763d266c627fee1c0bf08ee0b2263acc4970"
+python -m pip install "careeros-forge @ git+https://github.com/dreadstache/careeros-forge.git@f0467676b0d74d7cabcbaad2700fc27e2af8c867"
 careeros-forge --config forge.resume.json
 cd frontend
 npm install

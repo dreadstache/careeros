@@ -16,6 +16,7 @@ export default function App() {
   const [review, setReview] = useState<Review | null>(null);
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
+  const resumeTracks = [["Analytics", "analytics"], ["GIS", "gis"], ["Game Development", "game-development"], ["Technical Art", "technical-art"], ["Software & Systems", "software-systems"], ["Music Production", "music-production"], ["Web Development", "web-development"]];
 
   function chooseFile(event: ChangeEvent<HTMLInputElement>) {
     setFile(event.target.files?.[0] || null);
@@ -66,6 +67,10 @@ export default function App() {
           <a className="button secondary" href="https://github.com/dreadstache/careeros#career-data-imports">
             Import instructions
           </a>
+        </div>
+        <div className="track-list" aria-label="Role-specific resumes">
+          <p>Choose a focused résumé</p>
+          <div>{resumeTracks.map(([label, slug]) => <a key={slug} href={`${baseUrl}generated/resume/${slug}/index.html`}>{label}</a>)}</div>
         </div>
       </section>
       {isLocal && <section className="studio" aria-labelledby="studio-title">
