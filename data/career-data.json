@@ -182,6 +182,30 @@
         "imported_at": "2026-08-02T22:05:05.148033+00:00",
         "note": "Added 8/2/26"
       }
+    },
+    {
+      "id": "experience-webdev",
+      "status": "active",
+      "organization": "Web Development and Site Creation",
+      "position": "Web Developer and Troubleshooter",
+      "start_date": "2001",
+      "end_date": "2026",
+      "location": "USA, Australia",
+      "summary": "Web development using React, Python, HTML, CSS, JavaScript, GitHub",
+      "highlights": [
+        "HTML",
+        "React",
+        "CSS",
+        "GitHub",
+        "Copilot",
+        "ChatGPT"
+      ],
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "spreadsheet",
+        "imported_at": "2026-08-09T01:45:53.344417+00:00",
+        "note": "Added 8/2/26"
+      }
     }
   ],
   "education": [
@@ -320,6 +344,25 @@
         "imported_at": "2026-08-02T22:05:05.148177+00:00",
         "note": "Added 8/2/26"
       }
+    },
+    {
+      "id": "skills-webdev",
+      "status": "active",
+      "name": "Web Developer and Publisher",
+      "keywords": [
+        "HTML",
+        "React",
+        "CSS",
+        "GitHub",
+        "Copilot",
+        "ChatGPT"
+      ],
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "spreadsheet",
+        "imported_at": "2026-08-09T01:45:53.850897+00:00",
+        "note": "Added 8/2/26"
+      }
     }
   ],
   "projects": [
@@ -410,6 +453,52 @@
       "highlights": [
         "Developed the Dreadstache performance identity and Dreadstache Records label and brand."
       ]
+    },
+    {
+      "id": "projects-careeros",
+      "status": "active",
+      "name": "CareerOS",
+      "summary": "Developed CareerOS as a fully functioning interactive portfolio and resume site.",
+      "highlights": [
+        "Fully functional lightweight scalable web interface that pulls resume data based on whatever skills the user wants to see, and generates a resume tailored to that specific viewer."
+      ],
+      "technologies": [
+        "Web Development",
+        "Copilot",
+        "ChatGPT",
+        "WebGL",
+        "HTML",
+        "CSS"
+      ],
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "spreadsheet",
+        "imported_at": "2026-08-09T01:45:54.350258+00:00",
+        "note": "Added 8/2/26"
+      }
+    },
+    {
+      "id": "projects-3dportfolio",
+      "status": "active",
+      "name": "3D Portfolio Site",
+      "summary": "Fully functional 3D model viewer made with WebGL, Python, and a myriad of other web languages.",
+      "highlights": [
+        "3D Model viewer that lets the user choose lighting and background colors, as well as a studio version specific to me for adding and removing models for the viewer."
+      ],
+      "technologies": [
+        "Web Development",
+        "Copilot",
+        "ChatGPT",
+        "WebGL",
+        "HTML",
+        "CSS"
+      ],
+      "provenance": {
+        "source": "CareerOS verified career data",
+        "source_type": "spreadsheet",
+        "imported_at": "2026-08-09T01:45:54.350290+00:00",
+        "note": "Added 8/2/26"
+      }
     }
   ],
   "schema_version": "1.0"
