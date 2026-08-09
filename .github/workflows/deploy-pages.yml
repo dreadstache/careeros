@@ -29,6 +29,12 @@ jobs:
         run: >-
           python -m pip install
           "careeros-forge @ git+https://github.com/dreadstache/careeros-forge.git@f0467676b0d74d7cabcbaad2700fc27e2af8c867"
+      - name: Install backend test dependencies
+        run: python -m pip install -r backend/requirements.txt
+      - name: Test CareerOS backend
+        env:
+          PYTHONPATH: backend
+        run: python -m pytest -q backend/tests
       - name: Generate validated résumé
         run: careeros-forge --config forge.resume.json
       - name: Set up Node
