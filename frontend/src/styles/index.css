@@ -76,17 +76,33 @@ code { color: #75e1bd; }
 .track-card { border: 1px solid rgb(255 255 255 / 12%); border-radius: 1rem; background: rgb(255 255 255 / 4%); }
 .track-card summary { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem; cursor: pointer; }
 .track-card summary span { color: #8e96a8; font-size: 0.85rem; }
+.track-controls { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0 1rem 1rem; }
+.mini-button { padding: 0.45rem 0.7rem; border-radius: 999px; color: #dce2f3; background: rgb(255 255 255 / 8%); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 14%); font-size: 0.82rem; font-weight: 750; }
+.mini-button:hover, .mini-button:focus-visible { color: #08110e; background: #a1f1d5; outline: 2px solid rgb(117 225 189 / 35%); }
+.mini-button.danger { color: #ffd47a; margin-left: auto; }
+.mini-button.danger:hover, .mini-button.danger:focus-visible { color: #221606; background: #ffd47a; }
+.track-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; padding: 1rem; border-top: 1px solid rgb(255 255 255 / 8%); }
+.track-fields label { display: grid; gap: 0.4rem; color: #b8bdca; font-size: 0.82rem; font-weight: 750; }
+.track-fields .wide { grid-column: 1 / -1; }
+.track-fields input, .track-fields textarea { width: 100%; padding: 0.75rem 0.8rem; border: 1px solid rgb(255 255 255 / 16%); border-radius: 0.65rem; color: #f7f7f2; background: rgb(0 0 0 / 18%); font: inherit; resize: vertical; }
+.track-fields input:focus, .track-fields textarea:focus { border-color: #75e1bd; outline: 3px solid rgb(117 225 189 / 18%); }
 .track-card fieldset { margin: 0; padding: 1rem; border: 0; border-top: 1px solid rgb(255 255 255 / 8%); }
 .track-card legend { padding-top: 1rem; color: #75e1bd; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; }
 .check-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem 1rem; }
 .check-grid label { display: flex; gap: 0.55rem; align-items: flex-start; color: #dce2f3; line-height: 1.35; }
 .check-grid input { margin-top: 0.2rem; accent-color: #75e1bd; }
+.track-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.4rem; }
+.removal-panel { display: grid; gap: 0.7rem; padding: 1rem; border: 1px solid rgb(244 185 66 / 35%); border-radius: 1rem; background: rgb(244 185 66 / 8%); color: #ffd47a; }
+.removal-panel > div { display: flex; justify-content: space-between; gap: 1rem; align-items: center; }
+.removal-panel > label { display: flex; gap: 0.55rem; align-items: flex-start; color: #f7dca5; line-height: 1.45; }
+.removal-panel input { margin-top: 0.25rem; accent-color: #f4b942; }
 .publish-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
 .publish-status { margin-top: 1rem; padding: 0.9rem 1rem; border-radius: 0.8rem; background: rgb(255 255 255 / 5%); color: #b8bdca; }
 .publish-status p { margin: 0.35rem 0; overflow-wrap: anywhere; }
 
 @media (max-width: 38rem) {
-  .summary-grid, .check-grid { grid-template-columns: 1fr; }
+  .summary-grid, .check-grid, .track-fields { grid-template-columns: 1fr; }
+  .track-fields .wide { grid-column: auto; }
   .track-card summary { display: grid; }
 }
 

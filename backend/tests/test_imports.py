@@ -9,7 +9,7 @@ import app.main as main_module
 import app.studio as studio_module
 from app.imports import apply_import, build_review
 from app.main import app
-from app.studio import publishing_status, save_track_selections
+from app.studio import export_track_manifest, publishing_status, save_tracks
 from fastapi.testclient import TestClient
 
 
@@ -101,6 +101,8 @@ def _studio_root(tmp_path: Path) -> Path:
             "module_options": {"resume": {"profiles": [{
                 "slug": "example",
                 "title": "Example",
+                "headline": "Example headline",
+                "summary": "Example summary",
                 "experience_ids": ["old-role"],
                 "skill_ids": [],
                 "project_ids": [],
@@ -169,28 +171,97 @@ def test_studio_rejects_review_when_canonical_changed(tmp_path, monkeypatch):
 def test_track_selections_validate_ids_and_regenerate(tmp_path, monkeypatch):
     root = _studio_root(tmp_path)
     monkeypatch.setattr(studio_module, "run_generation", lambda _root: "generated")
-    result = save_track_selections(root, [{
+    track = {
         "slug": "example",
+        "original_slug": "example",
+        "title": "Example",
+        "headline": "Example headline",
+        "summary": "Example summary",
         "experience_ids": ["old-role"],
         "skill_ids": [],
         "project_ids": [],
-    }])
+    }
+    result = save_tracks(root, [track], [], False)
     assert result["status"] == "saved"
     assert result["tracks"][0]["experience_ids"] == ["old-role"]
     with pytest.raises(ValueError, match="must include at least one"):
-        save_track_selections(root, [{
-            "slug": "example",
-            "experience_ids": [],
-            "skill_ids": [],
-            "project_ids": [],
-        }])
+        save_tracks(root, [{**track, "experience_ids": []}], [], False)
     with pytest.raises(ValueError, match="unknown experience_ids"):
-        save_track_selections(root, [{
-            "slug": "example",
-            "experience_ids": ["invented-role"],
+        save_tracks(root, [{**track, "experience_ids": ["invented-role"]}], [], False)
+
+
+def test_tracks_can_be_added_renamed_and_reordered(tmp_path, monkeypatch):
+    root = _studio_root(tmp_path)
+    monkeypatch.setattr(studio_module, "run_generation", lambda _root: "generated")
+    tracks = [
+        {
+            "slug": "new-focus",
+            "original_slug": None,
+            "title": "New Focus Résumé",
+            "headline": "A new focus",
+            "summary": "A focused summary",
+            "experience_ids": ["old-role"],
             "skill_ids": [],
             "project_ids": [],
-        }])
+        },
+        {
+            "slug": "renamed-example",
+            "original_slug": "example",
+            "title": "Renamed Example Résumé",
+            "headline": "Renamed headline",
+            "summary": "Renamed summary",
+            "experience_ids": ["old-role"],
+            "skill_ids": [],
+            "project_ids": [],
+        },
+    ]
+
+    result = save_tracks(root, tracks, [], False)
+
+    assert [track["slug"] for track in result["tracks"]] == ["new-focus", "renamed-example"]
+    manifest = json.loads((root / "frontend" / "public" / "generated" / "resume" / "tracks.json").read_text(encoding="utf-8"))
+    assert [track["slug"] for track in manifest["tracks"]] == ["new-focus", "renamed-example"]
+
+
+def test_track_removal_requires_exact_confirmation_and_removes_stale_output(tmp_path, monkeypatch):
+    root = _studio_root(tmp_path)
+    stale = root / "frontend" / "public" / "generated" / "resume" / "example"
+    stale.mkdir(parents=True)
+    (stale / "index.html").write_text("old", encoding="utf-8")
+    monkeypatch.setattr(studio_module, "run_generation", lambda _root: "generated")
+    replacement = {
+        "slug": "replacement",
+        "original_slug": None,
+        "title": "Replacement Résumé",
+        "headline": "Replacement headline",
+        "summary": "Replacement summary",
+        "experience_ids": ["old-role"],
+        "skill_ids": [],
+        "project_ids": [],
+    }
+
+    with pytest.raises(ValueError, match="Confirm track removal"):
+        save_tracks(root, [replacement], ["example"], False)
+    with pytest.raises(ValueError, match="does not match"):
+        save_tracks(root, [replacement], [], True)
+
+    save_tracks(root, [replacement], ["example"], True)
+    assert not stale.exists()
+
+
+def test_export_track_manifest_keeps_profile_order(tmp_path):
+    root = _studio_root(tmp_path)
+    destination = export_track_manifest(root)
+    manifest = json.loads(destination.read_text(encoding="utf-8"))
+    assert manifest == {
+        "schema_version": "1.0",
+        "tracks": [{
+            "slug": "example",
+            "title": "Example",
+            "headline": "Example headline",
+            "summary": "Example summary",
+        }],
+    }
 
 
 def test_publishing_status_allows_only_career_data_and_config(tmp_path):

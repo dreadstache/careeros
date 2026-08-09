@@ -37,6 +37,8 @@ jobs:
         run: python -m pytest -q backend/tests
       - name: Generate validated résumé
         run: careeros-forge --config forge.resume.json
+      - name: Export résumé track navigation
+        run: python scripts/export_resume_tracks.py
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
