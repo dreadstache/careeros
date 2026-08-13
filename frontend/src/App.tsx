@@ -19,6 +19,7 @@ type Track = {
   project_ids: string[];
 };
 type PublicTrack = Pick<Track, "slug" | "title" | "headline" | "summary">;
+type EcosystemDestination = { id: string; label: string; description: string; url: string; status: string };
 type CatalogItem = { id: string; label: string };
 type TrackStudio = {
   tracks: Track[];
@@ -42,6 +43,12 @@ const fallbackTracks: PublicTrack[] = [
   { title: "Music Production", slug: "music-production" },
   { title: "Web Development", slug: "web-development" },
 ];
+const fallbackDestinations: EcosystemDestination[] = [
+  { id: "tech", label: "Tech & Systems", description: "Analytics, GIS, software, and automation.", url: "https://dreadstache.github.io/luccote-portfolio/", status: "live" },
+  { id: "three-d", label: "Games, Film & 3D", description: "Interactive models and technical art.", url: "https://vanta-model-atelier.dreadstache.chatgpt.site/", status: "live" },
+  { id: "music", label: "Music", description: "Dreadstache releases and production.", url: "https://dreadstache.com/", status: "live" },
+  { id: "resumes", label: "Résumé Library", description: "Focused, verified career stories.", url: "https://dreadstache.github.io/careeros/generated/resume/", status: "live" },
+];
 
 export default function App() {
   const baseUrl = import.meta.env.BASE_URL;
@@ -53,6 +60,7 @@ export default function App() {
   const [ownerToken, setOwnerToken] = useState("");
   const [trackStudio, setTrackStudio] = useState<TrackStudio | null>(null);
   const [publicTracks, setPublicTracks] = useState<PublicTrack[]>(fallbackTracks);
+  const [destinations, setDestinations] = useState<EcosystemDestination[]>(fallbackDestinations);
   const [removedTracks, setRemovedTracks] = useState<Track[]>([]);
   const [confirmRemovals, setConfirmRemovals] = useState(false);
   const [publishStatus, setPublishStatus] = useState<PublishStatus | null>(null);
@@ -61,6 +69,13 @@ export default function App() {
     fetch(`${baseUrl}generated/resume/tracks.json`, { cache: "no-store" })
       .then(response => response.ok ? response.json() : Promise.reject())
       .then(payload => Array.isArray(payload.tracks) && setPublicTracks(payload.tracks))
+      .catch(() => undefined);
+  }, [baseUrl]);
+
+  useEffect(() => {
+    fetch(`${baseUrl}generated/ecosystem.json`, { cache: "no-store" })
+      .then(response => response.ok ? response.json() : Promise.reject())
+      .then(payload => Array.isArray(payload.destinations) && setDestinations(payload.destinations))
       .catch(() => undefined);
   }, [baseUrl]);
 
@@ -264,6 +279,10 @@ export default function App() {
   return (
     <main>
       <section className="hero" aria-labelledby="page-title">
+        <details className="ecosystem-switcher">
+          <summary>Explore Luc's work <span aria-hidden="true">▾</span></summary>
+          <div><p><strong>Luc Cote</strong><span>One practice, several ways in.</span></p>{destinations.filter(destination => destination.status === "live").map(destination => <a key={destination.id} href={destination.url} aria-current={destination.id === "resumes" ? "page" : undefined}><strong>{destination.label}</strong><span>{destination.description}</span></a>)}</div>
+        </details>
         <p className="eyebrow">Career knowledge, structured</p>
         <h1 id="page-title">CareerOS</h1>
         <p className="tagline">One source of truth. Infinite ways to tell the story.</p>

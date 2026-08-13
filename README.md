@@ -5,6 +5,11 @@
 CareerOS stores structured career knowledge and generates résumés,
 portfolio pages, cover letters, case studies, search, and visualizations.
 
+`data/ecosystem.json` is the shared navigation source for Luc's connected
+portfolio experiences. The deployment publishes it as `generated/ecosystem.json`,
+so the tech, 3D, music, and résumé destinations can change in one place without
+hard-coded navigation drifting across sites.
+
 ## Domains
 
 Analytics · Games · Technical Art · Software · GIS · Music · Film · Simulation
