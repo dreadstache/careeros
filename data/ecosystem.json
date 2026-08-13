@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "identity": {
+    "name": "Lucien Marcel Cote",
+    "short_name": "Luc Cote",
+    "tagline": "One multidisciplinary practice, several ways in."
+  },
+  "destinations": [
+    {
+      "id": "tech",
+      "label": "Tech & Systems",
+      "description": "Analytics, GIS, software, automation, and systems work.",
+      "url": "https://dreadstache.github.io/luccote-portfolio/",
+      "status": "live"
+    },
+    {
+      "id": "three-d",
+      "label": "Games, Film & 3D",
+      "description": "Interactive models, game development, technical art, and film work.",
+      "url": "https://vanta-model-atelier.dreadstache.chatgpt.site/",
+      "status": "live"
+    },
+    {
+      "id": "music",
+      "label": "Music",
+      "description": "Dreadstache releases, production, performance, and sonic experiments.",
+      "url": "https://dreadstache.com/",
+      "status": "live"
+    },
+    {
+      "id": "resumes",
+      "label": "Résumé Library",
+      "description": "Focused résumés generated from verified CareerOS evidence.",
+      "url": "https://dreadstache.github.io/careeros/generated/resume/",
+      "status": "live"
+    }
+  ]
+}

@@ -18,7 +18,7 @@ from uuid import uuid4
 from app.imports import apply_import, build_review
 
 MAX_WORKBOOK_BYTES = 10 * 1024 * 1024
-PUBLISHABLE_PATHS = {"data/career-data.json", "forge.resume.json"}
+PUBLISHABLE_PATHS = {"data/career-data.json", "data/ecosystem.json", "forge.resume.json"}
 TRACK_SLUG_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 
@@ -109,6 +109,30 @@ def export_track_manifest(root: Path) -> Path:
     return destination
 
 
+def export_ecosystem_manifest(root: Path) -> Path:
+    source = root / "data" / "ecosystem.json"
+    manifest = json.loads(source.read_text(encoding="utf-8"))
+    destinations = manifest.get("destinations", [])
+    destination_ids = [destination.get("id") for destination in destinations]
+    if not manifest.get("identity", {}).get("name"):
+        raise ValueError("The ecosystem manifest requires an identity name")
+    if not destinations or any(not destination_id for destination_id in destination_ids):
+        raise ValueError("The ecosystem manifest requires named destinations")
+    if len(destination_ids) != len(set(destination_ids)):
+        raise ValueError("The ecosystem manifest contains duplicate destination IDs")
+    for destination in destinations:
+        if destination.get("status") == "live" and not str(destination.get("url", "")).startswith("https://"):
+            raise ValueError(f"Live destination {destination['id']} requires an HTTPS URL")
+    output = root / "frontend" / "public" / "generated" / "ecosystem.json"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return output
+
+
+def export_public_manifests(root: Path) -> tuple[Path, Path]:
+    return export_track_manifest(root), export_ecosystem_manifest(root)
+
+
 def _with_generated_backup(root: Path, operation):
     generated = root / "frontend" / "public" / "generated"
     with TemporaryDirectory(prefix="careeros-generated-") as temporary_directory:
@@ -144,7 +168,7 @@ def apply_review(review_id: str, root: Path) -> dict[str, Any]:
         try:
             apply_import(pending.review, canonical)
             generation = run_generation(root)
-            export_track_manifest(root)
+            export_public_manifests(root)
         except Exception:
             canonical.write_bytes(original)
             raise
@@ -263,7 +287,7 @@ def save_tracks(
                 stale_directory = resume_root / stale_slug
                 if stale_directory.is_dir():
                     shutil.rmtree(stale_directory)
-            export_track_manifest(root)
+            export_public_manifests(root)
         except Exception:
             config_path.write_bytes(original)
             raise
@@ -319,7 +343,7 @@ def publish(root: Path) -> dict[str, Any]:
         raise RuntimeError("Local main is not synchronized with origin/main")
     _run_git(root, "diff", "--check")
     run_generation(root)
-    export_track_manifest(root)
+    export_public_manifests(root)
     _run_git(root, "add", "--", *status["publishable_changes"])
     _run_git(root, "commit", "-m", "Publish reviewed CareerOS Studio changes")
     commit = _run_git(root, "rev-parse", "HEAD")

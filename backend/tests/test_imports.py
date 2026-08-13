@@ -9,7 +9,7 @@ import app.main as main_module
 import app.studio as studio_module
 from app.imports import apply_import, build_review
 from app.main import app
-from app.studio import export_track_manifest, publishing_status, save_tracks
+from app.studio import export_ecosystem_manifest, export_track_manifest, publishing_status, save_tracks
 from fastapi.testclient import TestClient
 
 
@@ -107,6 +107,20 @@ def _studio_root(tmp_path: Path) -> Path:
                 "skill_ids": [],
                 "project_ids": [],
             }]}},
+        }),
+        encoding="utf-8",
+    )
+    (tmp_path / "data" / "ecosystem.json").write_text(
+        json.dumps({
+            "schema_version": "1.0",
+            "identity": {"name": "Example Person"},
+            "destinations": [{
+                "id": "portfolio",
+                "label": "Portfolio",
+                "description": "Example destination",
+                "url": "https://example.com/",
+                "status": "live",
+            }],
         }),
         encoding="utf-8",
     )
@@ -262,6 +276,21 @@ def test_export_track_manifest_keeps_profile_order(tmp_path):
             "summary": "Example summary",
         }],
     }
+
+
+def test_export_ecosystem_manifest_validates_and_copies_public_navigation(tmp_path):
+    root = _studio_root(tmp_path)
+    destination = export_ecosystem_manifest(root)
+    manifest = json.loads(destination.read_text(encoding="utf-8"))
+    assert manifest["identity"]["name"] == "Example Person"
+    assert manifest["destinations"][0]["url"] == "https://example.com/"
+
+    source = root / "data" / "ecosystem.json"
+    invalid = json.loads(source.read_text(encoding="utf-8"))
+    invalid["destinations"][0]["url"] = "http://example.com/"
+    source.write_text(json.dumps(invalid), encoding="utf-8")
+    with pytest.raises(ValueError, match="requires an HTTPS URL"):
+        export_ecosystem_manifest(root)
 
 
 def test_publishing_status_allows_only_career_data_and_config(tmp_path):

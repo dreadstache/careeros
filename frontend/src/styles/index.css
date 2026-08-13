@@ -34,6 +34,17 @@ main {
 .studio {
   width: min(100%, 56rem);
 }
+.hero { position: relative; }
+.ecosystem-switcher { width: fit-content; margin: 0 0 2rem auto; position: relative; }
+.ecosystem-switcher summary { display: flex; gap: 0.45rem; align-items: center; padding: 0.65rem 0.9rem; border: 1px solid rgb(255 255 255 / 16%); border-radius: 999px; background: rgb(255 255 255 / 6%); color: #dce2f3; cursor: pointer; font-size: 0.82rem; font-weight: 800; list-style: none; }
+.ecosystem-switcher summary::-webkit-details-marker { display: none; }
+.ecosystem-switcher[open] summary, .ecosystem-switcher summary:hover { border-color: #75e1bd; }
+.ecosystem-switcher > div { position: absolute; top: calc(100% + 0.7rem); right: 0; z-index: 20; display: grid; gap: 0.35rem; width: min(23rem, calc(100vw - 4rem)); padding: 1rem; border: 1px solid rgb(255 255 255 / 14%); border-radius: 1rem; background: #11151f; box-shadow: 0 1.5rem 5rem rgb(0 0 0 / 45%); }
+.ecosystem-switcher p { display: grid; gap: 0.15rem; margin: 0 0 0.5rem; padding: 0 0.5rem 0.8rem; border-bottom: 1px solid rgb(255 255 255 / 10%); }
+.ecosystem-switcher p span, .ecosystem-switcher a span { color: #8e96a8; font-size: 0.76rem; }
+.ecosystem-switcher a { display: grid; gap: 0.15rem; padding: 0.7rem 0.75rem; border-radius: 0.7rem; color: #f7f7f2; text-decoration: none; }
+.ecosystem-switcher a:hover { background: rgb(117 225 189 / 9%); }
+.ecosystem-switcher a[aria-current="page"] { background: rgb(117 225 189 / 12%); box-shadow: inset 3px 0 0 #75e1bd; }
 
 .studio { padding: clamp(1.5rem, 4vw, 3rem); border: 1px solid rgb(255 255 255 / 14%); border-radius: 2rem; background: rgb(13 17 25 / 82%); box-shadow: 0 1.5rem 5rem rgb(0 0 0 / 28%); }
 .studio { width: min(100%, 72rem); }
