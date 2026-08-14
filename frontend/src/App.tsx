@@ -46,7 +46,7 @@ const fallbackTracks: PublicTrack[] = [
 const fallbackDestinations: EcosystemDestination[] = [
   { id: "tech", label: "Tech & Systems", description: "Analytics, GIS, software, and automation.", url: "https://dreadstache.github.io/luccote-portfolio/", status: "live" },
   { id: "three-d", label: "Games, Film & 3D", description: "Interactive models and technical art.", url: "https://vanta-model-atelier.dreadstache.chatgpt.site/", status: "live" },
-  { id: "music", label: "Music", description: "Dreadstache releases and production.", url: "https://dreadstache.com/", status: "live" },
+  { id: "music", label: "Music", description: "Dreadstache releases and production.", url: "https://dreadstache.github.io/dreadstache-music/", status: "live" },
   { id: "resumes", label: "Résumé Library", description: "Focused, verified career stories.", url: "https://dreadstache.github.io/careeros/generated/resume/", status: "live" },
 ];
 
