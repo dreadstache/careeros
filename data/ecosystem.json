@@ -10,28 +10,28 @@
       "id": "tech",
       "label": "Tech & Systems",
       "description": "Analytics, GIS, software, automation, and systems work.",
-      "url": "https://dreadstache.github.io/luccote-portfolio/",
+      "url": "https://www.luccote.com/",
       "status": "live"
     },
     {
       "id": "three-d",
       "label": "Games, Film & 3D",
       "description": "Interactive models, game development, technical art, and film work.",
-      "url": "https://dreadstache.github.io/dreadstache-portfolio/",
+      "url": "https://games.luccote.com/",
       "status": "live"
     },
     {
       "id": "music",
       "label": "Music",
       "description": "Dreadstache releases, production, performance, and sonic experiments.",
-      "url": "https://dreadstache.github.io/dreadstache-music/",
+      "url": "https://music.luccote.com/",
       "status": "live"
     },
     {
       "id": "resumes",
       "label": "Résumé Library",
       "description": "Focused résumés generated from verified CareerOS evidence.",
-      "url": "https://dreadstache.github.io/careeros/generated/resume/",
+      "url": "https://resume.luccote.com/",
       "status": "live"
     }
   ]

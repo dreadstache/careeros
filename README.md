@@ -10,6 +10,8 @@ portfolio experiences. The deployment publishes it as `generated/ecosystem.json`
 so the tech, 3D, music, and résumé destinations can change in one place without
 hard-coded navigation drifting across sites.
 
+Public résumé library: `https://resume.luccote.com/`
+
 ## Domains
 
 Analytics · Games · Technical Art · Software · GIS · Music · Film · Simulation

@@ -28,7 +28,7 @@ jobs:
       - name: Install CareerOS Forge
         run: >-
           python -m pip install
-          "careeros-forge @ git+https://github.com/dreadstache/careeros-forge.git@f0467676b0d74d7cabcbaad2700fc27e2af8c867"
+          "careeros-forge @ git+https://github.com/dreadstache/careeros-forge.git@03597d117c55ead9a9f4b4d42152e1dad88d9da0"
       - name: Install backend test dependencies
         run: python -m pip install -r backend/requirements.txt
       - name: Test CareerOS backend
