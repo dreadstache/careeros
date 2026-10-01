@@ -279,9 +279,9 @@ export default function App() {
 
   return (
     <>
-    <header className="site-header"><span className="site-nameplate">LUCIEN MARCEL COTE · RESUME LIBRARY</span>
+    <header className="site-header"><div className="brand"><span className="brandmark" aria-hidden="true">L</span><span className="identity-copy"><strong>LUCIEN MARCEL COTE</strong><small>RESUME LIBRARY</small></span></div>
         <details className="ecosystem-switcher">
-          <summary>Explore Luc's work <span aria-hidden="true">▾</span></summary>
+          <summary>Explore work <span aria-hidden="true">▾</span></summary>
           <div><p><strong>Luc Cote</strong><span>One practice, several ways in.</span></p>{destinations.filter(destination => destination.status === "live").map(destination => <a key={destination.id} href={destination.url} aria-current={destination.id === "resumes" ? "page" : undefined}><strong>{destination.label}</strong><span>{destination.description}</span></a>)}</div>
         </details>
     </header>
