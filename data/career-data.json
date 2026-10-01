@@ -1,135 +1,26 @@
 {
   "basics": {
-    "name": "Lucien Marcel Cote",
-    "headline": "Technical Artist, Systems Thinker, and Game Developer",
-    "summary": "Game-development and systems professional with experience spanning AAA character art, real-time simulation, workflow automation, municipal technology, software development, team leadership, and technical mentorship."
+    "name": "Luc Cote",
+    "headline": "Data and Systems Analyst | Software Developer | Game and VR Technical Artist",
+    "summary": "Cross-disciplinary technical professional connecting data and business intelligence, systems analysis, software development, automation, and real-time 3D production. Experience spans behavioral-health reporting, municipal technology, e-commerce platforms, AAA games, feature film, and government and military VR training. Translates stakeholder needs into practical tools, reliable reporting, and usable production workflows, with a consistent emphasis on troubleshooting, project leadership, technical mentorship, and clear documentation. Uses AI-assisted development to support current software and game projects."
   },
   "experience": [
     {
-      "organization": "Street Smarts VR",
-      "position": "3D Generalist III",
-      "start_date": "2023-08",
-      "end_date": "2024-09",
-      "location": "Remote",
-      "summary": "Supported government and military VR training simulations.",
-      "highlights": [
-        "Managed software research and development while maintaining fidelity in virtual training environments.",
-        "Led project planning and stakeholder coordination.",
-        "Implemented art pipelines supporting high frame rates and program fidelity."
-      ],
-      "id": "experience-street-smarts-vr",
-      "status": "active",
-      "provenance": {
-        "source": "CareerOS verified career data",
-        "source_type": "verified_cv"
-      }
-    },
-    {
-      "organization": "Independent Contractor",
-      "position": "3D Generalist, Systems Analyst, and Project Manager",
-      "start_date": "2007",
-      "location": "Vancouver, Washington",
-      "summary": "Creates real-time assets, production tools, and technical workflows.",
-      "highlights": [
-        "Developed assets for Unity, Unreal, and custom engines.",
-        "Created MEL and Python automation tools for artist workflows.",
-        "Trained artists in Maya and custom tool usage."
-      ],
       "id": "experience-independent-contractor",
       "status": "active",
-      "provenance": {
-        "source": "CareerOS verified career data",
-        "source_type": "verified_cv"
-      }
-    },
-    {
-      "organization": "SuperGenius Studio",
-      "position": "3D Artist and Team Lead",
-      "start_date": "2022-05",
-      "location": "Portland, Oregon",
-      "summary": "Develops high-fidelity game assets and supports multidisciplinary production.",
+      "organization": "Independent Contractor",
+      "position": "3D Generalist, Systems Analyst, Project Manager and Developer",
+      "start_date": "2007",
+      "location": "United States / Remote",
+      "summary": "Independent real-time production, systems analysis, software development, and technical mentorship.",
       "highlights": [
-        "Created assets and textures with Maya, ZBrush, and Substance Painter.",
-        "Provided technical feedback and mentorship in character-art production."
+        "Deliver 3D assets, characters, environments, tools and technical solutions for Unreal Engine, Unity, VR, AR, HoloLens and custom-engine projects.",
+        "Build Maya tools and automation scripts in Python and MEL for rigging, skinning, blend shapes, export and artist workflows.",
+        "Advise teams on pipeline design, real-time optimization, PBR and non-PBR materials, photogrammetry, character deformation and production planning.",
+        "Train artists and junior developers in Maya, custom tools, engine workflows and technical problem-solving; pursue independent software and game projects using AI-assisted development."
       ],
-      "id": "experience-supergenius-studio",
-      "status": "active",
       "provenance": {
-        "source": "CareerOS verified career data",
-        "source_type": "verified_cv"
-      }
-    },
-    {
-      "organization": "Netrush",
-      "position": "Software Developer",
-      "start_date": "2017-12",
-      "end_date": "2019-10",
-      "location": "Vancouver, Washington",
-      "summary": "Built internal software supporting Amazon Marketplace analytics.",
-      "highlights": [
-        "Developed dashboards and visual tools with Salesforce, Azure, and React.",
-        "Built internal platforms and workflow tools."
-      ],
-      "id": "experience-netrush",
-      "status": "active",
-      "provenance": {
-        "source": "CareerOS verified career data",
-        "source_type": "verified_cv"
-      }
-    },
-    {
-      "organization": "City of Casper",
-      "position": "Systems Analyst",
-      "start_date": "2015",
-      "end_date": "2017",
-      "location": "Casper, Wyoming",
-      "summary": "Supported municipal systems and technology modernization.",
-      "highlights": [
-        "Led system upgrades and municipal IT modernization work.",
-        "Implemented GIS-based 3D city modeling.",
-        "Designed web interfaces and dashboards supporting civic communication and transparency."
-      ],
-      "id": "experience-city-of-casper",
-      "status": "active",
-      "provenance": {
-        "source": "CareerOS verified career data",
-        "source_type": "verified_cv"
-      }
-    },
-    {
-      "organization": "Team Bondi / KMMIE",
-      "position": "Character Artist and Team Lead",
-      "start_date": "2008",
-      "end_date": "2013",
-      "location": "Sydney, Australia",
-      "summary": "Led character-art production for AAA game development.",
-      "highlights": [
-        "Served as principal artist for Cole Phelps and the principal cast of L.A. Noire.",
-        "Coordinated character asset creation, pipeline development, and technical troubleshooting.",
-        "Worked with the depth-analysis team on deformation and shader workflows for Project WOTO."
-      ],
-      "id": "experience-team-bondi-kmmie",
-      "status": "active",
-      "provenance": {
-        "source": "CareerOS verified career data",
-        "source_type": "verified_cv"
-      }
-    },
-    {
-      "organization": "Dr. D Studios",
-      "position": "Character Finaler",
-      "start_date": "2011",
-      "end_date": "2011",
-      "location": "Sydney, Australia",
-      "summary": "Finalized character assets for Happy Feet Two.",
-      "highlights": [
-        "Completed rigging and blend-shape passes for principal and background characters.",
-        "Maintained compatibility with the proprietary animation pipeline."
-      ],
-      "id": "experience-dr-d-studios",
-      "status": "active",
-      "provenance": {
-        "source": "CareerOS verified career data",
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
         "source_type": "verified_cv"
       }
     },
@@ -137,27 +28,158 @@
       "id": "experience-sweetser",
       "status": "active",
       "organization": "Sweetser",
-      "position": "Data Analyst",
-      "start_date": "2025",
-      "end_date": "2026",
-      "location": "Saco, Maine",
-      "summary": "Data Analysis and Reporting for Behavioral Health pipeline.",
+      "position": "Report Writer and Database Analyst",
+      "start_date": "2025-08",
+      "location": "Maine / Remote",
+      "summary": "Clinical, operational, compliance, and program reporting in the Welligent environment.",
       "highlights": [
-        "SQL",
-        "Crystal Reports",
-        "Reporting",
-        "Dashboards",
-        "Healthcare",
-        "Automation",
-        "SharePoint",
-        "Power Automate"
+        "Developed and maintained SQL Server queries and Crystal Reports for clinical, operational, compliance and program reporting within the Welligent environment.",
+        "Used T-SQL and SSMS to transform relational and form-based data with joins, common table expressions (CTEs), temporary tables, window functions, date calculations and validation logic.",
+        "Built and supported Power BI reporting and Microsoft Forms, SharePoint and Power Automate workflows for intake, attendance and program data.",
+        "Worked with program leaders and end users to define requirements, investigate data discrepancies, troubleshoot reports and document calculation logic and recurring reporting processes."
       ],
       "provenance": {
-        "source": "CareerOS verified career data",
-        "source_type": "spreadsheet",
-        "imported_at": "2026-08-02T21:09:14.532385+00:00",
-        "note": "Added 8/2/26"
-      }
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv",
+        "note": "Sweetser employment dates corrected by Luc on September 30, 2026: August 2025–January 2026."
+      },
+      "end_date": "2026-01"
+    },
+    {
+      "id": "experience-street-smarts-vr",
+      "status": "active",
+      "organization": "Street Smarts VR",
+      "position": "3D Generalist III and Technical Mentor",
+      "start_date": "2023-08",
+      "location": "Remote",
+      "summary": "Unity simulation production for government and military training.",
+      "highlights": [
+        "Supported software research and development and content delivery for government and military VR training simulations built in Unity.",
+        "Led project planning, stakeholder coordination and technical mentoring while maintaining training fidelity and real-time performance.",
+        "Developed art pipelines, optimized simulation assets and translated technical constraints into practical guidance for production artists."
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      },
+      "end_date": "2024-09"
+    },
+    {
+      "id": "experience-supergenius-studio",
+      "status": "active",
+      "organization": "SuperGenius Studio",
+      "position": "3D Artist",
+      "start_date": "2022-05",
+      "location": "Portland, OR",
+      "summary": "High-fidelity game asset production with art and engineering teams.",
+      "highlights": [
+        "Created high-fidelity real-time assets and textures using Maya, ZBrush, Substance Painter, Photoshop, Marmoset and ShotGrid.",
+        "Collaborated with art and engineering teams and provided technical feedback on character art, asset development and production requirements."
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv",
+        "note": "Dates or production timeline clarified by Luc on September 30, 2026."
+      },
+      "end_date": "2022-12"
+    },
+    {
+      "id": "experience-netrush",
+      "status": "active",
+      "organization": "Netrush",
+      "position": "Software Developer",
+      "start_date": "2017-12",
+      "location": "Vancouver, WA",
+      "summary": "Marketplace analytics and internal software platforms.",
+      "highlights": [
+        "Developed internal tools and platforms to analyze Amazon Marketplace sales data and support business planning for Netrush and its partners.",
+        "Created dashboards and data visualizations in Salesforce Einstein Analytics using data from Azure and internal systems.",
+        "Built Azure Functions, APIs, backend methods, custom objects and React/Redux interfaces during the transition from Salesforce to an in-house platform.",
+        "Worked with C#, JavaScript, HTML, CSS/Sass, Apex, SQL Server, Azure Storage, Azure DevOps and Power BI across application and reporting workflows."
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      },
+      "end_date": "2019-10"
+    },
+    {
+      "id": "experience-city-of-casper",
+      "status": "active",
+      "organization": "City of Casper",
+      "position": "Systems Analyst",
+      "start_date": "2015",
+      "location": "Casper, WY",
+      "summary": "Municipal technology, GIS visualization, and systems modernization.",
+      "highlights": [
+        "Managed web, dashboard, database and technology projects supporting municipal operations, public communication and service modernization.",
+        "Evaluated and coordinated system upgrades across city departments with internal users, IT staff, vendors and project stakeholders.",
+        "Created 3D city models at multiple levels of detail using Esri CityEngine and ArcGIS data, with supporting interfaces and visual assets.",
+        "Applied SQL Server, Visual Studio, Power BI, SharePoint Designer, C#, JavaScript, HTML, Adobe Creative Cloud, Maya and Unity to municipal projects."
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      },
+      "end_date": "2017"
+    },
+    {
+      "id": "experience-team-bondi-kmmie",
+      "status": "active",
+      "organization": "Team Bondi / KMM Interactive Entertainment (KMMIE)",
+      "position": "Character Artist and Team Lead",
+      "start_date": "2008",
+      "location": "Sydney, Australia",
+      "summary": "Character-team leadership and pipeline development across L.A. Noire and Project WOTO.",
+      "highlights": [
+        "Led character art production for L.A. Noire and subsequent Project WOTO research and development, coordinating tasks, reference material, troubleshooting and pipeline improvements.",
+        "Owned production of protagonist Cole Phelps across outfits and created principal characters, non-player characters (NPCs) and clothing combinations.",
+        "Carried character assets through modeling, sculpting, texturing, skinning and in-engine testing, connecting visual quality with technical implementation.",
+        "Partnered with programmers on scanned-head point-cloud workflows, deformation, shaders, and artist-facing controls from late L.A. Noire production throughout Project WOTO.",
+        "Developed training resources and provided technical leadership using Maya, Mudbox, ZBrush, Photoshop, Illustrator, MEL, Python, Jira and proprietary tools."
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv",
+        "note": "Dates or production timeline clarified by Luc on September 30, 2026."
+      },
+      "end_date": "2013"
+    },
+    {
+      "id": "experience-dr-d-studios",
+      "status": "active",
+      "organization": "Dr. D Studios / Warner Bros.",
+      "position": "Character Finaler",
+      "start_date": "2011",
+      "location": "Sydney, Australia",
+      "summary": "Character finaling for Happy Feet Two.",
+      "highlights": [
+        "Performed final technical and animation corrections on principal and background characters before shots proceeded to final rendering.",
+        "Completed rigging, skinning, blend-shape and deformation fixes using Maya, Python, MEL, Photoshop and a proprietary production toolset."
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      },
+      "end_date": "2011"
+    },
+    {
+      "id": "experience-finesse-painting",
+      "status": "active",
+      "organization": "Finesse Painting and Decorating",
+      "position": "Manager",
+      "start_date": "1996",
+      "location": "United States",
+      "summary": "Seasonal residential painting operations and crew management.",
+      "highlights": [
+        "Managed a seasonal residential painting crew of six to twelve employees, coordinating interior and exterior projects, schedules, quality control, client communication and job-site safety.",
+        "Trained new hires and developed practical team leadership and project-management skills through hands-on delivery and accountability for workmanship."
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      },
+      "end_date": "2007"
     },
     {
       "id": "experience-music-production",
@@ -165,7 +187,6 @@
       "organization": "Dreadstache Records",
       "position": "Musician and Producer",
       "start_date": "2010",
-      "end_date": "2026",
       "location": "USA, Australia",
       "summary": "Music production for education and soundtrack scores.",
       "highlights": [
@@ -180,7 +201,7 @@
         "source": "CareerOS verified career data",
         "source_type": "spreadsheet",
         "imported_at": "2026-08-02T22:05:05.148033+00:00",
-        "note": "Added 8/2/26"
+        "note": "Dates or production timeline clarified by Luc on September 30, 2026."
       }
     },
     {
@@ -189,7 +210,6 @@
       "organization": "Web Development and Site Creation",
       "position": "Web Developer and Troubleshooter",
       "start_date": "2001",
-      "end_date": "2026",
       "location": "USA, Australia",
       "summary": "Web development using React, Python, HTML, CSS, JavaScript, GitHub",
       "highlights": [
@@ -204,7 +224,7 @@
         "source": "CareerOS verified career data",
         "source_type": "spreadsheet",
         "imported_at": "2026-08-09T01:45:53.344417+00:00",
-        "note": "Added 8/2/26"
+        "note": "Dates or production timeline clarified by Luc on September 30, 2026."
       }
     }
   ],
@@ -218,12 +238,146 @@
       "id": "education-the-art-institute-of-portland",
       "status": "active",
       "provenance": {
-        "source": "CareerOS verified career data",
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
         "source_type": "verified_cv"
       }
     }
   ],
   "skills": [
+    {
+      "id": "skills-data-analysis",
+      "status": "active",
+      "name": "Data and business intelligence",
+      "keywords": [
+        "SQL Server",
+        "T-SQL",
+        "SQL Server Management Studio (SSMS)",
+        "Crystal Reports",
+        "Power BI",
+        "Welligent",
+        "Excel",
+        "relational databases",
+        "data validation",
+        "ETL workflows",
+        "dashboards",
+        "operational reporting",
+        "Salesforce Einstein Analytics",
+        "PostgreSQL",
+        "Supabase",
+        "SQLite"
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      }
+    },
+    {
+      "id": "skills-programming-and-web",
+      "status": "active",
+      "name": "Software and web development",
+      "keywords": [
+        "Python",
+        "C#",
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Redux",
+        "HTML",
+        "CSS/Sass",
+        "Apex",
+        "MEL",
+        "REST APIs",
+        "Azure Functions",
+        "Azure Storage",
+        "FastAPI",
+        "SQLAlchemy",
+        "Jinja2",
+        "D3.js",
+        "Vite",
+        "Progressive Web Applications (PWAs)"
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      }
+    },
+    {
+      "id": "skills-production-tools",
+      "status": "active",
+      "name": "Automation and collaboration",
+      "keywords": [
+        "Microsoft 365",
+        "SharePoint",
+        "SharePoint Designer",
+        "Microsoft Forms",
+        "Power Automate",
+        "Git",
+        "GitHub",
+        "GitHub Actions",
+        "Azure DevOps",
+        "Visual Studio",
+        "VS Code",
+        "Jira",
+        "Perforce",
+        "ShotGrid"
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      }
+    },
+    {
+      "id": "skills-3d-production",
+      "status": "active",
+      "name": "Game technology and 3D production",
+      "keywords": [
+        "Unreal Engine",
+        "Unity",
+        "Autodesk Maya",
+        "Autodesk Mudbox",
+        "Blender",
+        "ZBrush",
+        "Substance Painter",
+        "Adobe Photoshop",
+        "Adobe Illustrator",
+        "Adobe Creative Cloud",
+        "Marmoset",
+        "Esri ArcGIS",
+        "Esri CityEngine",
+        "rigging",
+        "skinning",
+        "blend shapes",
+        "photogrammetry",
+        "PBR Materials",
+        "Real-time Optimization"
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      }
+    },
+    {
+      "id": "skills-ai-workflows",
+      "status": "active",
+      "name": "AI-assisted workflows",
+      "keywords": [
+        "ChatGPT/OpenAI",
+        "Codex",
+        "Claude",
+        "GitHub Copilot",
+        "AI-assisted Coding",
+        "Debugging",
+        "Research",
+        "Documentation",
+        "Prototyping",
+        "Analysis",
+        "Workflow Development"
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      }
+    },
     {
       "name": "Game Engines",
       "keywords": [
@@ -232,58 +386,6 @@
         "Custom VR/AR platforms"
       ],
       "id": "skills-game-engines",
-      "status": "active",
-      "provenance": {
-        "source": "CareerOS verified career data",
-        "source_type": "verified_cv"
-      }
-    },
-    {
-      "name": "3D Production",
-      "keywords": [
-        "Maya",
-        "ZBrush",
-        "Substance Painter",
-        "Blender",
-        "Quixel",
-        "MetaHuman"
-      ],
-      "id": "skills-3d-production",
-      "status": "active",
-      "provenance": {
-        "source": "CareerOS verified career data",
-        "source_type": "verified_cv"
-      }
-    },
-    {
-      "name": "Programming and Web",
-      "keywords": [
-        "Python",
-        "MEL",
-        "C#",
-        "HTML",
-        "JavaScript",
-        "React",
-        "Redux",
-        "Azure"
-      ],
-      "id": "skills-programming-and-web",
-      "status": "active",
-      "provenance": {
-        "source": "CareerOS verified career data",
-        "source_type": "verified_cv"
-      }
-    },
-    {
-      "name": "Production Tools",
-      "keywords": [
-        "ShotGrid",
-        "Perforce",
-        "Jira",
-        "Visual Studio",
-        "VS Code"
-      ],
-      "id": "skills-production-tools",
       "status": "active",
       "provenance": {
         "source": "CareerOS verified career data",
@@ -303,27 +405,6 @@
       "provenance": {
         "source": "CareerOS verified career data",
         "source_type": "verified_cv"
-      }
-    },
-    {
-      "id": "skills-data-analysis",
-      "status": "active",
-      "name": "Data Analysis and Reporting",
-      "keywords": [
-        "SQL",
-        "Crystal Reports",
-        "Reporting",
-        "Dashboards",
-        "Healthcare",
-        "Automation",
-        "SharePoint",
-        "Power Automate"
-      ],
-      "provenance": {
-        "source": "CareerOS verified career data",
-        "source_type": "spreadsheet",
-        "imported_at": "2026-08-02T21:08:29.436808+00:00",
-        "note": "Added 8/2/26"
       }
     },
     {
@@ -363,14 +444,156 @@
         "imported_at": "2026-08-09T01:45:53.850897+00:00",
         "note": "Added 8/2/26"
       }
+    },
+    {
+      "id": "skills-leadership-mentorship",
+      "status": "active",
+      "name": "Leadership and Technical Mentorship",
+      "keywords": [
+        "Cross-functional Collaboration",
+        "Requirements Gathering",
+        "Production Planning",
+        "Workflow Documentation",
+        "Technical Training",
+        "Artist and Developer Mentorship",
+        "Troubleshooting"
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      }
     }
   ],
   "projects": [
     {
+      "id": "projects-duckbills",
+      "status": "active",
+      "name": "Duckbills / BudgetApp",
+      "summary": "Personal budgeting and bill-tracking application",
+      "highlights": [
+        "Develop a cross-device budgeting application with AI-assisted implementation and debugging, evolving a Python/Excel reminder tool into a React, TypeScript and Vite PWA.",
+        "Work with Supabase authentication and PostgreSQL data models for households, bills, payments, imports and reminders, including row-level security and data-validation workflows.",
+        "Define product behavior, review application results and iterate on guided imports, dashboards and reminders. Use Git/GitHub, GitHub Actions, Vitest, Playwright, Vercel and Sentry within the development workflow."
+      ],
+      "url": "https://github.com/dreadstache/BudgetApp",
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Supabase",
+        "PostgreSQL",
+        "Vitest",
+        "Playwright"
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      }
+    },
+    {
+      "id": "projects-careeros",
+      "status": "active",
+      "name": "CareerOS and CareerOS Forge",
+      "summary": "Career data and document-generation platform",
+      "highlights": [
+        "Build a structured career-data platform that stores verified experience and supports targeted résumés, portfolio pages, cover letters, case studies, search and visualizations.",
+        "Use Python, FastAPI, SQLAlchemy, SQLite/PostgreSQL-ready data models, React, TypeScript, D3.js, Jinja2, JSON Schema validation, automated testing and GitHub Pages deployment.",
+        "Extend the workflow through CareerOS Forge with configuration-driven repository scaffolding and validated, print-ready résumé generation."
+      ],
+      "url": "https://github.com/dreadstache/careeros",
+      "technologies": [
+        "Python",
+        "FastAPI",
+        "SQLAlchemy",
+        "React",
+        "TypeScript",
+        "D3.js",
+        "Jinja2",
+        "JSON Schema"
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      }
+    },
+    {
+      "id": "projects-shaicolonies",
+      "status": "active",
+      "name": "ShaiColonies",
+      "summary": "Independent game development",
+      "highlights": [
+        "Develop an Unreal Engine 5 project with C++ project infrastructure, Git/GitHub and Git LFS, including cross-platform work and Apple-device testing preparation using Xcode."
+      ],
+      "url": "https://github.com/dreadstache/ShaiColonies",
+      "technologies": [
+        "Unreal Engine 5",
+        "C++",
+        "Git LFS",
+        "Xcode"
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      }
+    },
+    {
+      "id": "projects-luccote-portfolio",
+      "status": "active",
+      "name": "Luc Cote Multidisciplinary Portfolio",
+      "summary": "luccote.com",
+      "highlights": [
+        "Create and maintain a public portfolio connecting analytics, GIS, software automation, games, VR, technical art, production pipelines, music and film work."
+      ],
+      "url": "https://www.luccote.com/",
+      "technologies": [
+        "Analytics",
+        "GIS",
+        "Software",
+        "Technical Art",
+        "Music"
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      }
+    },
+    {
+      "id": "projects-zaleene",
+      "status": "active",
+      "name": "Zaleene Brand Site",
+      "summary": "zalien.me",
+      "highlights": [
+        "Build and deploy a responsive single-page brand website using semantic HTML, CSS, lightweight JavaScript, accessible navigation, custom-domain configuration and GitHub Pages."
+      ],
+      "url": "https://zalien.me/",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "GitHub Pages"
+      ],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      }
+    },
+    {
+      "id": "projects-technical-demonstrations",
+      "status": "active",
+      "name": "Selected Technical Demonstrations",
+      "summary": "Portfolio examples include Unreal environment art and character-animation tests; Project WOTO character R&D; a L.A. Noire Cole Phelps turnaround; Unity HDRP prop lighting; a Maya bow rig; and photogrammetry using Polycam and Substance 3D Stager.",
+      "highlights": [],
+      "provenance": {
+        "source": "Luc_Cote_Master_Resume_2026.docx (user-confirmed September 30, 2026)",
+        "source_type": "verified_cv"
+      }
+    },
+    {
       "name": "L.A. Noire",
       "summary": "AAA game developed by Team Bondi and published by Rockstar Games.",
       "highlights": [
-        "Principal artist for lead character Cole Phelps and the principal cast."
+        "Owned production of Cole Phelps across outfits and created principal characters, NPCs, and clothing combinations.",
+        "Contributed scanned-head, deformation, shader, and artist-facing tool development during late production, continuing throughout Project WOTO."
       ],
       "technologies": [
         "Character Art",
@@ -421,7 +644,7 @@
       "name": "Project WOTO",
       "summary": "Unreleased Team Bondi project developed with Warner Bros.",
       "highlights": [
-        "Contributed character deformation and shader pipeline research and development."
+        "Partnered with programmers on scanned-head point-cloud workflows, deformation, shaders, and artist-facing controls from late L.A. Noire production throughout Project WOTO."
       ],
       "technologies": [
         "Character Art",
@@ -438,7 +661,7 @@
       "id": "projects-dreadstache",
       "status": "active",
       "name": "Dreadstache, Dreadstache Records",
-      "summary": "Developed and Branded Dreadstache as a performance role, Dreadstache Records as a label, and use MIDI, synthesizers, grooveboxes, and a lot of software to produce electronic music and scores.",
+      "summary": "Produce electronic music and scores using MIDI, synthesizers, grooveboxes, and software; develop the Dreadstache performance identity and Dreadstache Records label.",
       "technologies": [
         "Music Production",
         "Branding",
@@ -455,35 +678,12 @@
       ]
     },
     {
-      "id": "projects-careeros",
-      "status": "active",
-      "name": "CareerOS",
-      "summary": "Developed CareerOS as a fully functioning interactive portfolio and resume site.",
-      "highlights": [
-        "Fully functional lightweight scalable web interface that pulls resume data based on whatever skills the user wants to see, and generates a resume tailored to that specific viewer."
-      ],
-      "technologies": [
-        "Web Development",
-        "Copilot",
-        "ChatGPT",
-        "WebGL",
-        "HTML",
-        "CSS"
-      ],
-      "provenance": {
-        "source": "CareerOS verified career data",
-        "source_type": "spreadsheet",
-        "imported_at": "2026-08-09T01:45:54.350258+00:00",
-        "note": "Added 8/2/26"
-      }
-    },
-    {
       "id": "projects-3dportfolio",
       "status": "active",
       "name": "3D Portfolio Site",
-      "summary": "Fully functional 3D model viewer made with WebGL, Python, and a myriad of other web languages.",
+      "summary": "Interactive 3D portfolio with a WebGL model viewer.",
       "highlights": [
-        "3D Model viewer that lets the user choose lighting and background colors, as well as a studio version specific to me for adding and removing models for the viewer."
+        "Provide lighting and background controls for visitors and a local studio for managing portfolio models."
       ],
       "technologies": [
         "Web Development",
