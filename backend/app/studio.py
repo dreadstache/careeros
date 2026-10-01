@@ -126,6 +126,15 @@ def export_ecosystem_manifest(root: Path) -> Path:
     output = root / "frontend" / "public" / "generated" / "ecosystem.json"
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    # Install navigation in every generated resume after Forge renders it.
+    import os
+    menu_script = root / "frontend" / "public" / "explore-menu.js"
+    for page in (output.parent / "resume").rglob("index.html"):
+        text = page.read_text(encoding="utf-8")
+        if 'data-shared-explore' not in text:
+            relative = os.path.relpath(menu_script, page.parent).replace(os.sep, "/")
+            text = text.replace("</head>", f'<script defer data-shared-explore src="{relative}"></script>\n</head>')
+            page.write_text(text, encoding="utf-8")
     return output
 
 

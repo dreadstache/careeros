@@ -33,6 +33,13 @@
       "description": "Focused résumés generated from verified CareerOS evidence.",
       "url": "https://resume.luccote.com/",
       "status": "live"
+    },
+    {
+      "id": "archive",
+      "label": "The Archive",
+      "description": "Earlier work, production history, and creative foundations.",
+      "url": "https://games.luccote.com/archive.html",
+      "status": "live"
     }
   ]
 }
