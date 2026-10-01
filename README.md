@@ -22,6 +22,10 @@ FastAPI · SQLite/PostgreSQL-ready · SQLAlchemy · React · TypeScript · D3.js
 
 ## Run locally
 
+For a complete Mac checkout of all five connected repositories, dependencies,
+local Studio commands, and the Windows/Mac handoff workflow, see
+[Mac workspace setup](docs/mac-workspace.md).
+
 ```powershell
 python -m pip install "careeros-forge @ git+https://github.com/dreadstache/careeros-forge.git@f0467676b0d74d7cabcbaad2700fc27e2af8c867"
 careeros-forge --config forge.resume.json
