@@ -278,12 +278,15 @@ export default function App() {
   }
 
   return (
-    <main>
-      <section className="hero" aria-labelledby="page-title">
+    <>
+    <header className="site-header"><span className="site-nameplate">LUCIEN MARCEL COTE · RÉSUMÉ LIBRARY</span>
         <details className="ecosystem-switcher">
           <summary>Explore Luc's work <span aria-hidden="true">▾</span></summary>
           <div><p><strong>Luc Cote</strong><span>One practice, several ways in.</span></p>{destinations.filter(destination => destination.status === "live").map(destination => <a key={destination.id} href={destination.url} aria-current={destination.id === "resumes" ? "page" : undefined}><strong>{destination.label}</strong><span>{destination.description}</span></a>)}</div>
         </details>
+    </header>
+    <main>
+      <section className="hero" aria-labelledby="page-title">
         <p className="eyebrow">Career knowledge, structured</p>
         <h1 id="page-title">CareerOS</h1>
         <p className="tagline">One source of truth. Infinite ways to tell the story.</p>
@@ -381,5 +384,6 @@ export default function App() {
         </div>
       </section>}
     </main>
+    </>
   );
 }

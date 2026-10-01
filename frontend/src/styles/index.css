@@ -187,3 +187,10 @@ h1 {
   outline: 3px solid rgb(117 225 189 / 35%);
   outline-offset: 4px;
 }
+
+.site-header { position:sticky; top:0; z-index:1000; display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:1rem 1.25rem; background:#0b0d12f2; border-bottom:1px solid #ffffff29; backdrop-filter:blur(18px); }
+.site-nameplate { font-size:.8rem; font-weight:700; letter-spacing:.06em; }
+.site-header .ecosystem-switcher { margin:0; flex-shrink:0; }
+html { scroll-padding-top:100px; }
+@media(max-width:600px) { .site-nameplate { font-size:.65rem; } .site-header { padding:.8rem; } }
+@media print { .site-header { display:none; } }
