@@ -211,7 +211,7 @@ def test_tracks_can_be_added_renamed_and_reordered(tmp_path, monkeypatch):
         {
             "slug": "new-focus",
             "original_slug": None,
-            "title": "New Focus Résumé",
+            "title": "New Focus Resume",
             "headline": "A new focus",
             "summary": "A focused summary",
             "experience_ids": ["old-role"],
@@ -221,7 +221,7 @@ def test_tracks_can_be_added_renamed_and_reordered(tmp_path, monkeypatch):
         {
             "slug": "renamed-example",
             "original_slug": "example",
-            "title": "Renamed Example Résumé",
+            "title": "Renamed Example Resume",
             "headline": "Renamed headline",
             "summary": "Renamed summary",
             "experience_ids": ["old-role"],
@@ -246,7 +246,7 @@ def test_track_removal_requires_exact_confirmation_and_removes_stale_output(tmp_
     replacement = {
         "slug": "replacement",
         "original_slug": None,
-        "title": "Replacement Résumé",
+        "title": "Replacement Resume",
         "headline": "Replacement headline",
         "summary": "Replacement summary",
         "experience_ids": ["old-role"],

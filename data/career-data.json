@@ -496,9 +496,9 @@
       "name": "CareerOS and CareerOS Forge",
       "summary": "Career data and document-generation platform",
       "highlights": [
-        "Build a structured career-data platform that stores verified experience and supports targeted résumés, portfolio pages, cover letters, case studies, search and visualizations.",
+        "Build a structured career-data platform that stores verified experience and supports targeted resumes, portfolio pages, cover letters, case studies, search and visualizations.",
         "Use Python, FastAPI, SQLAlchemy, SQLite/PostgreSQL-ready data models, React, TypeScript, D3.js, Jinja2, JSON Schema validation, automated testing and GitHub Pages deployment.",
-        "Extend the workflow through CareerOS Forge with configuration-driven repository scaffolding and validated, print-ready résumé generation."
+        "Extend the workflow through CareerOS Forge with configuration-driven repository scaffolding and validated, print-ready resume generation."
       ],
       "url": "https://github.com/dreadstache/careeros",
       "technologies": [

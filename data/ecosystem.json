@@ -29,8 +29,8 @@
     },
     {
       "id": "resumes",
-      "label": "Résumé Library",
-      "description": "Focused résumés generated from verified CareerOS evidence.",
+      "label": "Resume Library",
+      "description": "Focused resumes generated from verified CareerOS evidence.",
       "url": "https://resume.luccote.com/",
       "status": "live"
     },

@@ -231,7 +231,7 @@ def save_tracks(
     profiles = config.get("module_options", {}).get("resume", {}).get("profiles", [])
     existing_slugs = {profile["slug"] for profile in profiles}
     if not tracks:
-        raise ValueError("CareerOS must contain at least one résumé track")
+        raise ValueError("CareerOS must contain at least one resume track")
 
     new_slugs: set[str] = set()
     original_slugs: set[str] = set()

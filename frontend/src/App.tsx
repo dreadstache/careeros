@@ -47,7 +47,7 @@ const fallbackDestinations: EcosystemDestination[] = [
   { id: "tech", label: "Tech & Systems", description: "Analytics, GIS, software, and automation.", url: "https://www.luccote.com/", status: "live" },
   { id: "three-d", label: "Games, Film & 3D", description: "Interactive models and technical art.", url: "https://games.luccote.com/", status: "live" },
   { id: "music", label: "Music", description: "Dreadstache releases and production.", url: "https://music.luccote.com/", status: "live" },
-  { id: "resumes", label: "Résumé Library", description: "Focused, verified career stories.", url: "https://resume.luccote.com/", status: "live" },
+  { id: "resumes", label: "Resume Library", description: "Focused, verified career stories.", url: "https://resume.luccote.com/", status: "live" },
   {"id": "archive", "label": "The Archive", "description": "Earlier work, production history, and creative foundations.", "url": "https://games.luccote.com/archive.html", "status": "live"},
 ];
 
@@ -83,7 +83,7 @@ export default function App() {
   useEffect(() => {
     if (!isLocal) return;
     fetch(`${apiUrl}/studio/tracks`)
-      .then(response => response.ok ? response.json() : Promise.reject(new Error("Could not load résumé tracks")))
+      .then(response => response.ok ? response.json() : Promise.reject(new Error("Could not load resume tracks")))
       .then(setTrackStudio)
       .catch(error => setMessage(error.message));
   }, [isLocal]);
@@ -183,7 +183,7 @@ export default function App() {
         tracks: [...current.tracks, {
           slug,
           original_slug: null,
-          title: "New Résumé Track",
+          title: "New Resume Track",
           headline: "",
           summary: "",
           experience_ids: [],
@@ -237,10 +237,10 @@ export default function App() {
       setPublicTracks(payload.tracks);
       setRemovedTracks([]);
       setConfirmRemovals(false);
-      setMessage(`Résumé tracks saved and regenerated. Backup: ${payload.backup}`);
+      setMessage(`Resume tracks saved and regenerated. Backup: ${payload.backup}`);
       await refreshPublishStatus();
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Could not save résumé tracks.");
+      setMessage(error instanceof Error ? error.message : "Could not save resume tracks.");
     } finally {
       setBusy(false);
     }
@@ -279,7 +279,7 @@ export default function App() {
 
   return (
     <>
-    <header className="site-header"><span className="site-nameplate">LUCIEN MARCEL COTE · RÉSUMÉ LIBRARY</span>
+    <header className="site-header"><span className="site-nameplate">LUCIEN MARCEL COTE · RESUME LIBRARY</span>
         <details className="ecosystem-switcher">
           <summary>Explore Luc's work <span aria-hidden="true">▾</span></summary>
           <div><p><strong>Luc Cote</strong><span>One practice, several ways in.</span></p>{destinations.filter(destination => destination.status === "live").map(destination => <a key={destination.id} href={destination.url} aria-current={destination.id === "resumes" ? "page" : undefined}><strong>{destination.label}</strong><span>{destination.description}</span></a>)}</div>
@@ -295,12 +295,12 @@ export default function App() {
           visualizations from a single, durable body of evidence.
         </p>
         <div className="actions">
-          <a className="button" href={`${baseUrl}generated/resume/index.html`}>View generated résumé</a>
+          <a className="button" href={`${baseUrl}generated/resume/index.html`}>View generated resume</a>
           <a className="button secondary" href={`${baseUrl}templates/CareerOS_Import_Template.xlsx`}>Download career workbook</a>
           <a className="button secondary" href="https://github.com/dreadstache/careeros#career-data-imports">Import instructions</a>
         </div>
         <div className="track-list" aria-label="Role-specific resumes">
-          <p>Choose a focused résumé</p>
+          <p>Choose a focused resume</p>
           <div>{publicTracks.map(track => <a key={track.slug} href={`${baseUrl}generated/resume/${track.slug}/index.html`}>{track.title.replace(/\s+R[eé]sum[eé]$/i, "")}</a>)}</div>
         </div>
       </section>
@@ -308,7 +308,7 @@ export default function App() {
       {isLocal && <section className="studio" aria-labelledby="studio-title">
         <p className="eyebrow">Owner workspace</p>
         <h2 id="studio-title">Career Data Studio</h2>
-        <p className="studio-copy">Review first, apply locally, tune each résumé lens, then publish only the approved files.</p>
+        <p className="studio-copy">Review first, apply locally, tune each resume lens, then publish only the approved files.</p>
 
         <label className="token-field">
           <span>Local owner token</span>
@@ -317,7 +317,7 @@ export default function App() {
         {message && <p className="notice" role="status">{message}</p>}
 
         <div className="studio-step">
-          <div className="step-heading"><span>1</span><div><h3>Review and apply workbook</h3><p>Review never writes. Apply uses this exact review and regenerates every résumé.</p></div></div>
+          <div className="step-heading"><span>1</span><div><h3>Review and apply workbook</h3><p>Review never writes. Apply uses this exact review and regenerates every resume.</p></div></div>
           <div className="upload-row">
             <label className="file-picker">
               <span>{file ? file.name : "Choose CareerOS workbook"}</span>
@@ -338,7 +338,7 @@ export default function App() {
         </div>
 
         <div className="studio-step">
-          <div className="step-heading"><span>2</span><div><h3>Build résumé tracks</h3><p>Add, rename, reorder, and focus each résumé on the evidence that belongs.</p></div></div>
+          <div className="step-heading"><span>2</span><div><h3>Build resume tracks</h3><p>Add, rename, reorder, and focus each resume on the evidence that belongs.</p></div></div>
           {trackStudio && <div className="track-editor">
             {trackStudio.tracks.map((track, trackIndex) => <details className="track-card" key={track.original_slug || track.slug}>
               <summary><strong>{track.title}</strong><span>{track.experience_ids.length} roles · {track.skill_ids.length} skill groups · {track.project_ids.length} projects</span></summary>
@@ -364,7 +364,7 @@ export default function App() {
               <label><input type="checkbox" checked={confirmRemovals} onChange={event => setConfirmRemovals(event.target.checked)} /> I understand their generated pages will be removed.</label>
             </div>}
             <div className="track-actions">
-              <button className="button secondary" onClick={addTrack}>Add résumé track</button>
+              <button className="button secondary" onClick={addTrack}>Add resume track</button>
               <button className="button" disabled={!ownerToken || busy || (removedTracks.length > 0 && !confirmRemovals)} onClick={saveTracks}>Save tracks & regenerate</button>
             </div>
           </div>}

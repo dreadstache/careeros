@@ -11,5 +11,5 @@ from app.studio import export_public_manifests
 
 if __name__ == "__main__":
     tracks, ecosystem = export_public_manifests(ROOT)
-    print(f"Exported résumé track manifest: {tracks}")
+    print(f"Exported resume track manifest: {tracks}")
     print(f"Exported portfolio ecosystem manifest: {ecosystem}")
